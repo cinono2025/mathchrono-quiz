@@ -22,7 +22,9 @@
     --border-strong: #c8c7bf;
     --text: #1a1a18;
     --text-sec: #5a5a55;
-    --text-muted: #9a9a94;
+    --text-muted: #6b6b66;
+    --text-primary: var(--text);
+    --muted: var(--text-muted);
     --accent: #185fa5;
     --accent-bg: #e6f1fb;
     --accent-text: #0c447c;
@@ -42,7 +44,7 @@
       --border-strong: #505050;
       --text: #f0f0ec;
       --text-sec: #aaa;
-      --text-muted: #666;
+      --text-muted: #9b9b95;
       --accent: #378add;
       --accent-bg: #0c2a45;
       --accent-text: #85b7eb;
@@ -533,7 +535,6 @@ const THEMES_C1 = {
     {q:"Quelle est la bonne relation d'inclusion ?",c:["ℚ ⊂ ℤ ⊂ ℕ","ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ","ℝ ⊂ ℚ ⊂ ℤ","ℤ ⊂ ℕ ⊂ ℚ"],a:1,exp:"ℕ ⊂ 𝔻 ⊂ ℤ ⊂ ℚ ⊂ ℝ"},
     {q:"Si x > 0 et y > 0, alors √(xy) = ?",c:["√x + √y","√x × √y","√x / √y","x√y"],a:1,exp:"Propriété : √(xy) = √x × √y pour x,y ≥ 0"},
     {q:"Si x > 0 et y > 0, alors √(x/y) = ?",c:["√x − √y","√x + √y","√x / √y","√y / √x"],a:2,exp:"Propriété : √(x/y) = √x / √y pour x ≥ 0, y > 0"},
-    {q:"Pour tout réel x, √(x²) = ?",c:["x","−x","|x|","x²"],a:2,exp:"√(x²) = |x| pour tout réel x"},
     {q:"Deux nombres positifs sont rangés dans le même ordre que…",c:["Leurs opposés","Leurs carrés","Leurs inverses","Leurs doubles négatifs"],a:1,exp:"Propriété : si 0 ≤ a ≤ b alors a² ≤ b²"},
     {q:"Deux nombres de même signe non nuls sont rangés dans l'ordre contraire de…",c:["Leurs carrés","Leurs racines","Leurs inverses","Leurs doubles"],a:2,exp:"Propriété : si a et b ont même signe et a < b alors 1/a > 1/b"},
     {q:"Encadrement de √5 : √4 < √5 < √9 donne…",c:["1 < √5 < 2","2 < √5 < 3","4 < √5 < 9","0 < √5 < 1"],a:1,exp:"√4 = 2 et √9 = 3 donc 2 < √5 < 3"},
@@ -1379,9 +1380,6 @@ const THEMES_C1 = {
     {q:"Le symétrique d'un cercle (C) par rapport à une droite est…",c:["le cercle de même rayon dont le centre est le symétrique du centre de (C)","une ellipse","un cercle de rayon double","un segment"],a:0,exp:"Propriété admise"},
     {q:"Dans un rectangle, les axes de symétrie sont…",c:["ses diagonales","les médiatrices de ses côtés","ses côtés","ses hauteurs seulement"],a:1,exp:"Un rectangle non carré a 2 axes de symétrie"},
     {q:"Dans un losange, les axes de symétrie sont…",c:["les diagonales","les côtés","les médiatrices des côtés","aucune droite"],a:0,exp:"Propriété admise"},
-    {q:"Un carré a…",c:["un axe de symétrie","huit axes de symétrie","deux axes de symétrie","quatre axes de symétrie"],a:3,exp:"Propriété admise"},
-    {q:"Un trapèze isocèle a un axe de symétrie qui est…",c:["un de ses côtés","une base","une de ses diagonales","la médiatrice de ses bases"],a:3,exp:"Propriété admise"},
-    {q:"Un octogone régulier est un polygone inscriptible dans un cercle, ayant…",c:["ses six côtés de même longueur","quatre angles droits","dix côtés","ses huit côtés de même longueur"],a:3,exp:"Définition du guide"},
     {q:"L'axe de symétrie d'un triangle isocèle est…",c:["la médiatrice de sa base","une hauteur quelconque","une de ses bases","un de ses côtés égaux"],a:0,exp:"Propriété démontrée en classe"},
     {q:"Le symétrique d'un cercle de rayon 4 cm par rapport à une droite est…",c:["un cercle de rayon 16 cm","un cercle de rayon 8 cm","un cercle de rayon 2 cm","un cercle de rayon 4 cm"],a:3,exp:"Même rayon"},
   ],
@@ -1727,7 +1725,7 @@ const THEMES_C1 = {
     {q:"Sur une carte à l'échelle 1/100 000, une longueur de 3 cm représente…",c:["300 m","3 m","30 km","3 km"],a:3,exp:"3 × 100 000 cm = 300 000 cm"},
     {q:"Sur un plan à l'échelle 1/50, 4 cm représentent en réalité…",c:["12,5 cm","0,08 cm","54 cm","200 cm"],a:3,exp:"4 × 50"},
     {q:"Le tableau (3 ; 5 ; 7) et (9 ; 15 ; 22) est-il un tableau de proportionnalité ?",c:["Oui, avec le coefficient 3,14","Non, car 22 ≠ 7 × 3","Non, car 7 est premier","Oui, avec le coefficient 3"],a:1,exp:"9/3 = 15/5 = 3 mais 22/7 ≠ 3"},
-    {q:"Un article coûte 2 000 F avec une remise de 10 %. Son nouveau prix est…",c:["200 F","2 200 F","1 800 F","1 990 F"],a:2,exp:"10 % de 2 000 = 200 F"},
+    {q:"Un article coûte 2 000 F avec une remise de 10 %. Son nouveau prix est…",c:["200 F","2 200 F","1 800 F","1 990 F"],a:2,exp:"10 % de 2 000 = 200 F de remise ; nouveau prix : 2 000 − 200 = 1 800 F"},
     {q:"Un pourcentage…",c:["s'exprime en mètres","n'a pas d'unité","s'exprime toujours en francs","est toujours supérieur à 100"],a:1,exp:"Remarque du guide de 5e, valable dès la 6e"},
     {q:"On détermine un coefficient de proportionnalité en…",c:["ajoutant deux nombres d'une colonne","soustrayant les deux lignes","multipliant tous les nombres du tableau","divisant un nombre de la 2e ligne par le nombre correspondant de la 1re"],a:3,exp:"Coefficient = rapport constant"},
   ],
@@ -2332,7 +2330,6 @@ const THEMES_C2 = {
     {q:"Définition : le radian est la mesure d'un angle au centre qui intercepte un arc de longueur…",c:["égale au diamètre","égale au rayon","égale à π","égale à 1"],a:1,exp:"Radian"},
     {q:"Définition : le cercle trigonométrique est…",c:["le cercle de rayon 1 orienté dans le sens direct","un cercle de diamètre 1 non orienté","un cercle de rayon π","tout cercle passant par O"],a:0,exp:"Cercle trigonométrique"},
     {q:"Définition : deux vecteurs sont orthogonaux lorsque…",c:["ils sont colinéaires","leur déterminant est nul","ils ont même norme","leur produit scalaire est nul"],a:3,exp:"Orthogonalité"},
-    {q:"Théorème d'Al-Kashi : a² = …",c:["b² + c² − 2bc sin A","b² + c² + 2bc cos A","b² + c² − 2bc cos A","b² − c²"],a:2,exp:"Al-Kashi"},
     {q:"Définition : la rotation r(O, θ) est l'application qui…",c:["associe à M le point M' tel que →OM' = θ→OM","laisse O invariant et associe à M ≠ O le point M' tel que OM' = OM et mes(→OM, →OM') = θ","déplace tous les points d'un même vecteur","associe à M son symétrique par rapport à O uniquement"],a:1,exp:"Rotation"},
     {q:"Propriété : le cercle de centre I(a ; b) et de rayon R a pour équation…",c:["x² + y² = R","(x + a)² + (y + b)² = R²","(x − a)² + (y − b)² = R²","(x − a) + (y − b) = R"],a:2,exp:"Équation d'un cercle"},
     {q:"Propriété : la composée de deux translations de vecteurs →u et →v est…",c:["une rotation","une homothétie","la translation de vecteur →u − →v","la translation de vecteur →u + →v"],a:3,exp:"Composée de translations"},
@@ -2661,7 +2658,6 @@ const THEMES_C2 = {
     {q:"Définition : le radian est la mesure d'un angle au centre qui intercepte un arc de longueur…",c:["égale au diamètre","égale à 1","égale au rayon","égale à π"],a:2,exp:"Radian"},
     {q:"Définition : le cercle trigonométrique est…",c:["le cercle de rayon 1 orienté dans le sens direct","un cercle de diamètre 1 non orienté","un cercle de rayon π","tout cercle passant par O"],a:0,exp:"Cercle trigonométrique"},
     {q:"Définition : deux vecteurs sont orthogonaux lorsque…",c:["ils sont colinéaires","leur déterminant est nul","leur produit scalaire est nul","ils ont même norme"],a:2,exp:"Orthogonalité"},
-    {q:"Théorème d'Al-Kashi : a² = …",c:["b² + c² − 2bc cos A","b² + c² + 2bc cos A","b² + c² − 2bc sin A","b² − c²"],a:0,exp:"Al-Kashi"},
     {q:"Définition : la rotation r(O, θ) est l'application qui…",c:["laisse O invariant et associe à M ≠ O le point M' tel que OM' = OM et mes(→OM, →OM') = θ","déplace tous les points d'un même vecteur","associe à M son symétrique par rapport à O uniquement","associe à M le point M' tel que →OM' = θ→OM"],a:0,exp:"Rotation"},
     {q:"Propriété : le cercle de centre I(a ; b) et de rayon R a pour équation…",c:["(x − a) + (y − b) = R","x² + y² = R","(x − a)² + (y − b)² = R²","(x + a)² + (y + b)² = R²"],a:2,exp:"Équation d'un cercle"},
     {q:"Propriété : la composée de deux translations de vecteurs →u et →v est…",c:["la translation de vecteur →u + →v","une rotation","une homothétie","la translation de vecteur →u − →v"],a:0,exp:"Composée de translations"},
@@ -2726,7 +2722,7 @@ const THEMES_C2 = {
   "1A — Suites arithmétiques": [
     {q:"Une suite arithmétique de raison r vérifie…",c:["Uₙ₊₁ = r/n","Uₙ₊₁ = Uₙ + r","Uₙ₊₁ = Uₙ²","Uₙ₊₁ = r Uₙ"],a:1,exp:"Définition"},
     {q:"Pour une suite arithmétique de premier terme U₀ et de raison r, Uₙ = …",c:["U₀ × rⁿ","n U₀","U₀ + r","U₀ + n r"],a:3,exp:"Propriété admise"},
-    {q:"Pour tous entiers n et k, Uₙ = …",c:["U_k + r","U_k × rⁿ⁻ᵏ","U_k + (n − k) r","U_k + n k r"],a:2,exp:"Propriété admise"},
+    {q:"Suite arithmétique de raison r : pour tous entiers n et k, Uₙ = …",c:["U_k + r","U_k × rⁿ⁻ᵏ","U_k + (n − k) r","U_k + n k r"],a:2,exp:"Propriété admise"},
     {q:"U₀ = 5 et r = 3 : U₂₀ = …",c:["68","60","75","65"],a:3,exp:"5 + 20 × 3"},
     {q:"La somme de n termes consécutifs d'une suite arithmétique est égale…",c:["à la somme des extrêmes","à n × le premier terme","au produit par n de la demi-somme des termes extrêmes","à n²"],a:2,exp:"Propriété admise"},
     {q:"U₀ = 5 et r = 3 : la somme U₀ + U₁ + … + U₁₉ vaut…",c:["335","670","1 000","1 340"],a:1,exp:"20 × (5 + 62)/2"},
@@ -2740,7 +2736,7 @@ const THEMES_C2 = {
   "1A — Suites géométriques": [
     {q:"Une suite géométrique de raison q vérifie…",c:["Uₙ₊₁ = Uₙ²","Uₙ₊₁ = q Uₙ","Uₙ₊₁ = Uₙ + q","Uₙ₊₁ = q/n"],a:1,exp:"Définition"},
     {q:"Pour une suite géométrique de premier terme U₀ et de raison q, Uₙ = …",c:["U₀ qⁿ⁺¹","U₀ + n q","n U₀ q","U₀ × qⁿ"],a:3,exp:"Propriété admise"},
-    {q:"Pour tous entiers n et k, Uₙ = …",c:["U_k × qⁿ⁻ᵏ","U_k + (n − k) q","U_k × q","U_k qⁿ k"],a:0,exp:"Propriété admise"},
+    {q:"Suite géométrique de raison q : pour tous entiers n et k, Uₙ = …",c:["U_k × qⁿ⁻ᵏ","U_k + (n − k) q","U_k × q","U_k qⁿ k"],a:0,exp:"Propriété admise"},
     {q:"U₀ = 3 et q = 2 : U₅ = …",c:["48","192","30","96"],a:3,exp:"3 × 2⁵"},
     {q:"Si q ≠ 1, la somme de n termes consécutifs de premier terme a est S = …",c:["n a","a(1 − qⁿ)/(1 − q)","a(1 − q)/(1 − qⁿ)","a qⁿ"],a:1,exp:"Propriété admise"},
     {q:"Si q = 1, la somme de n termes vaut…",c:["n a","0","a n²","a"],a:0,exp:"Tous les termes sont égaux à a"},
@@ -3739,7 +3735,7 @@ const THEMES_C2 = {
     {q:"Pour une série continue, on utilise pour la moyenne…",c:["les bornes inférieures","les amplitudes","les effectifs seulement","les centres des classes"],a:3,exp:"Méthode du guide"},
     {q:"Série : 2, 4, 6, 8 avec les effectifs 1, 2, 3, 4. La moyenne est…",c:["5","6","60","4,5"],a:1,exp:"(2 + 8 + 18 + 32)/10"},
     {q:"Série : 2, 4, 6, 8 avec les effectifs 1, 2, 3, 4. L'effectif total est…",c:["4","8","20","10"],a:3,exp:"1 + 2 + 3 + 4"},
-    {q:"Série : 2, 4, 6, 8 avec les effectifs 1, 2, 3, 4. La médiane est…",c:["4","7","5","6"],a:3,exp:"Effectifs cumulés croissants 1, 3, 6, 10 ; N/2 = 5"},
+    {q:"Série : 2, 4, 6, 8 avec les effectifs 1, 2, 3, 4. La médiane est…",c:["4","7","5","6"],a:3,exp:"Effectifs cumulés croissants 1, 3, 6, 10 ; N = 10 est pair : la médiane est la moyenne des 5ᵉ et 6ᵉ valeurs, toutes deux égales à 6"},
     {q:"Série : 2, 4, 6, 8 avec les effectifs 1, 2, 3, 4. Le mode est…",c:["6","5","2","8"],a:3,exp:"Effectif maximal : 4"},
     {q:"La variance d'une série est…",c:["la moyenne des écarts","la moyenne des carrés des écarts à la moyenne","la différence max − min","la médiane des écarts"],a:1,exp:"Définition du guide"},
     {q:"L'écart-type est…",c:["la racine carrée de la variance","la moyenne des écarts","la moitié de la variance","le carré de la variance"],a:0,exp:"Définition du guide"},
@@ -4223,7 +4219,6 @@ const THEMES_C2 = {
     {q:"Propriété : |zz'| = …",c:["|z + z'|","|z|²","|z| |z'|","|z| + |z'|"],a:2,exp:"Module d'un produit"},
     {q:"Propriété : arg(zz') = …",c:["2 arg z","arg z − arg z'","arg z × arg z'","arg z + arg z'"],a:3,exp:"Argument d'un produit"},
     {q:"Formule de Moivre : (cos θ + i sin θ)ⁿ = …",c:["n cos θ + i n sin θ","cos θ + i sin nθ","cos nθ + i sin nθ","cosⁿθ + i sinⁿθ"],a:2,exp:"Moivre"},
-    {q:"Formule d'Euler : cos θ = …",c:["e^(iθ)","(e^(iθ) − e^(−iθ))/2","(e^(iθ) + e^(−iθ))/(2i)","(e^(iθ) + e^(−iθ))/2"],a:3,exp:"Euler"},
     {q:"Propriété : les racines n-ièmes d'un complexe non nul sont au nombre de…",c:["1","n","une infinité","2"],a:1,exp:"Racines n-ièmes"},
     {q:"Théorème des valeurs intermédiaires : f continue sur [a ; b], k entre f(a) et f(b) ⟹",c:["f(x) = k admet une solution unique","f est dérivable","f(x) = k admet au moins une solution dans [a ; b]","f est monotone"],a:2,exp:"TVI"},
     {q:"Propriété : si f est continue et strictement monotone sur K, alors…",c:["f' s'annule sur K","f réalise une bijection de K sur f(K) dont la réciproque est continue","f est paire","f est constante"],a:1,exp:"Bijection réciproque"},
@@ -4891,7 +4886,7 @@ let startTime = null;
 
 // ── Historique (localStorage) ──
 function loadHistory(){
-  try { return JSON.parse(localStorage.getItem('mathchrono_history') || '[]'); } catch(e){ return []; }
+  try { const h = JSON.parse(localStorage.getItem('mathchrono_history') || '[]'); return Array.isArray(h) ? h : []; } catch(e){ return []; }
 }
 function saveHistory(h){
   try { localStorage.setItem('mathchrono_history', JSON.stringify(h)); } catch(e){}
@@ -4899,7 +4894,7 @@ function saveHistory(h){
 function addToHistory(entry){
   const h = loadHistory();
   h.unshift(entry);
-  saveHistory(h);
+  saveHistory(h.slice(0, 500));
 }
 function clearHistory(){
   if(confirm('Effacer tout l\'historique ?')){ localStorage.removeItem('mathchrono_history'); renderHistoryPage(); }
@@ -4918,8 +4913,13 @@ let audioCtx = null;
 
 function getAudioCtx(){
   if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if(audioCtx.state === 'suspended'){ try{ audioCtx.resume(); }catch(e){} }
   return audioCtx;
 }
+// le son doit être créé pendant un geste de l'utilisateur (iOS / Safari)
+['pointerdown','touchstart','keydown'].forEach(function(ev){
+  document.addEventListener(ev, function(){ try{ getAudioCtx(); }catch(e){} }, {once:true, passive:true});
+});
 
 function playTick(urgent){
   if(!soundOn) return;
@@ -4976,12 +4976,74 @@ function toggleSound(){
   if(btn) btn.textContent = soundOn ? '🔔' : '🔕';
 }
 
+/* ===== Aides communes (corrections) ===== */
+function escHTML(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function shuffleArr(a){ a = a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const x=a[i]; a[i]=a[j]; a[j]=x; } return a; }
+function shuffledCopy(q){
+  if(!q || !Array.isArray(q.c)) return q;
+  const perm = shuffleArr(q.c.map((_,i)=>i));
+  return Object.assign({}, q, { c: perm.map(i=>q.c[i]), a: perm.indexOf(q.a) });
+}
+let sessionKind = 'normal'; // 'normal' | 'revision' | 'perso'
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
+function legacyCopy(text){
+  try{
+    const ta=document.createElement('textarea'); ta.value=text; ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;top:0;left:0;opacity:0;';
+    document.body.appendChild(ta); ta.select(); try{ ta.setSelectionRange(0,text.length); }catch(e){}
+    const ok=document.execCommand('copy'); document.body.removeChild(ta); return ok;
+  }catch(e){ return false; }
+}
+function copyText(text){
+  try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).catch(function(){ legacyCopy(text); }); return true; } }catch(e){}
+  return legacyCopy(text);
+}
+function dialUSSD(code){
+  if(/Android/i.test(navigator.userAgent)){ window.location.href = 'tel:' + code.replace(/#/g,'%23'); }
+  else { prompt('Compose ce code depuis le clavier de ton téléphone :', code); }
+}
+/* Réglages (à modifier ici) */
+window.MQ_CFG = {
+  REQUIRE_DEVICE: false,  // true = refuser les codes qui ne sont pas liés à un appareil (à activer quand l'outil de génération des codes ajoute le champ « d »)
+  GATE_EVAL: true,        // true = l'évaluation formative d'une classe verrouillée est réservée aux payeurs
+  MONTANT_ENS: 2000       // prix du code enseignant (toutes les classes)
+};
+/* Identifiant d'appareil : un code peut être lié à cet identifiant (champ « d » du code signé) */
+function mqDeviceId(){
+  let id = lsGet('mq_dev');
+  if(!id || !/^[A-Z0-9]{5}-[A-Z0-9]{5}$/.test(id)){
+    let m = null; try{ m = (document.cookie.match(/(?:^|; )mq_dev=([A-Z0-9]{5}-[A-Z0-9]{5})/)||[])[1]; }catch(e){}
+    id = m || '';
+  }
+  if(!id){
+    const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; const r=new Uint8Array(10);
+    try{ crypto.getRandomValues(r); }catch(e){ for(let i=0;i<10;i++) r[i]=Math.floor(Math.random()*256); }
+    let s=''; for(let j=0;j<10;j++){ s+=A[r[j]%A.length]; if(j===4) s+='-'; }
+    id = s;
+  }
+  lsSet('mq_dev', id);
+  try{ document.cookie = 'mq_dev='+id+'; max-age=63072000; path=/; SameSite=Lax'; }catch(e){}
+  return id;
+}
+window.mqDeviceId = mqDeviceId;
+window.mqDeviceCheck = function(p){
+  const me = mqDeviceId();
+  if(p && p.d){
+    if(String(p.d).toUpperCase() !== me) return {ok:false, soft:true, wrongDevice:true, err:'Ce code est lié à un autre appareil : il ne fonctionne que sur le téléphone pour lequel il a été délivré. Pour en obtenir un pour cet appareil, envoie son identifiant : '+me};
+  } else if(window.MQ_CFG.REQUIRE_DEVICE){
+    return {ok:false, err:'Ce code n\'est lié à aucun appareil. Demande un nouveau code en envoyant l\'identifiant de cet appareil : '+me};
+  }
+  return null;
+};
+
 function getQuestions(){
   const classThemes = (CLASSES && CLASSES[currentClass]) ? CLASSES[currentClass] : [];
   let pool = ALL_Q.filter(q => classThemes.includes(q.theme));
   if(currentTheme !== "Tous") pool = pool.filter(q => q.theme === currentTheme);
-  pool = pool.sort(() => Math.random() - 0.5);
-  return pool.slice(0, Math.min(TOTAL, pool.length));
+  pool = shuffleArr(pool);
+  return pool.slice(0, Math.min(TOTAL, pool.length)).map(shuffledCopy);
 }
 
 function setSerie(s){
@@ -4999,14 +5061,22 @@ function setClass(c){
 let missedQuestions = []; // questions ratées pour mode révision
 let sessionDetails = []; // détails par question pour le récap
 
+function renderEmpty(){
+  clearInterval(timer);
+  const app = document.getElementById('app');
+  app.innerHTML = '<div class="theme-section" id="theme-bar"></div><div class="end-card"><div class="end-label">Aucune question</div><div class="end-msg" style="margin:1rem 0;">Aucune question disponible pour cette sélection.</div><button class="restart-btn" onclick="setTheme(\'Tous\')">📚 Tous les thèmes</button></div>';
+  try{ renderThemeBar(); }catch(e){}
+}
+
 function startQuiz(fromMissed = false){
   if(!fromMissed && window.mqAccesGate && window.mqAccesGate()) return;
-  questions = fromMissed && missedQuestions.length > 0
-    ? missedQuestions.sort(() => Math.random() - 0.5)
-    : getQuestions();
+  const revision = fromMissed && missedQuestions.length > 0;
+  sessionKind = revision ? 'revision' : 'normal';
+  questions = revision ? shuffleArr(missedQuestions) : getQuestions();
   idx = 0; score = 0; answered = false; results = [];
   missedQuestions = []; sessionDetails = [];
   startTime = Date.now();
+  if(questions.length === 0){ renderEmpty(); return; }
   render();
 }
 
@@ -5015,7 +5085,8 @@ function setChrono(s){ CHRONO = s; renderThemeBar(); }
 
 
 function vecHTML(t){
-  if(!t) return t;
+  if(t == null || t === '') return t;
+  t = String(t);
   return t.replace(/→([A-Za-z0-9'][A-Za-z0-9']{0,3})/g,
     function(m,l){ return '<span class="vec"><span>'+l+'</span></span>'; }
   );
@@ -5042,7 +5113,7 @@ function render(){
         <span class="q-num">Question ${idx+1} / ${questions.length}</span>
         <span class="q-badge">${q.theme}</span>
       </div>
-      <div class="question">${q.q}</div>
+      <div class="question">${vecHTML(q.q)}</div>
       <div class="chrono-wrap">
         <div class="chrono-bar-bg">
           <div class="chrono-bar-fill" id="cbar" style="width:100%"></div>
@@ -5050,7 +5121,7 @@ function render(){
         <span class="chrono-txt" id="ctxt">${CHRONO}s</span>
       </div>
       <div class="choices" id="choices">
-        ${q.c.map((c,i) => `<button class="choice" onclick="choose(${i})" id="ch${i}"><span class="letter">${LETTERS[i]}</span>${c}</button>`).join('')}
+        ${q.c.map((c,i) => `<button class="choice" onclick="choose(${i})" id="ch${i}"><span class="letter">${LETTERS[i]}</span>${vecHTML(c)}</button>`).join('')}
       </div>
       <div class="feedback" id="fb"></div>
     </div>
@@ -5080,7 +5151,7 @@ function renderThemeBar(){
   if(currentCycle === 1) {
     // Cycle 1 : 4 boutons de classe
     const classBtns = Object.keys(CLASSES).map(c =>
-      `<button class="class-btn${currentClass===c?' active':''}" onclick="setClass('${c}');startQuiz();">${c}</button>`
+      `<button class="class-btn${currentClass===c?' active':''}" onclick="setClass('${c}')">${c}</button>`
     ).join('');
     levelHtml = `
       <div style="margin-bottom:8px;">
@@ -5103,7 +5174,7 @@ function renderThemeBar(){
         </div>
         <div>
           <div class="theme-label">Classe</div>
-          <select class="theme-select" onchange="setClass(this.value);startQuiz();">${classOptions}</select>
+          <select class="theme-select" onchange="setClass(this.value)">${classOptions}</select>
         </div>
       </div>`;
   }
@@ -5143,8 +5214,11 @@ function renderThemeBar(){
 function startTimer(from){
   timeLeft = (typeof from === 'number') ? from : CHRONO; answered = false;
   clearInterval(timer);
+  const deadline = Date.now() + timeLeft * 1000;
   timer = setInterval(() => {
-    timeLeft--;
+    const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+    if(left === timeLeft) return;
+    timeLeft = left;
     const txt = document.getElementById('ctxt');
     const bar = document.getElementById('cbar');
     if(txt) txt.textContent = timeLeft + 's';
@@ -5154,7 +5228,7 @@ function startTimer(from){
     }
     playTick(timeLeft <= 5);
     if(timeLeft <= 0){ clearInterval(timer); timeoutQ(); }
-  }, 1000);
+  }, 250);
 }
 
 function timeoutQ(){
@@ -5165,7 +5239,8 @@ function timeoutQ(){
   missedQuestions.push(q);
   sessionDetails.push({q, chosen: -1, ok: false});
   const fb = document.getElementById('fb');
-  if(fb) fb.innerHTML = `⏰ Temps écoulé ! <strong>Bonne réponse : ${q.c[q.a]}</strong>`;
+  try{ playWrong(); }catch(e){}
+  if(fb) fb.innerHTML = `⏰ Temps écoulé ! <strong>Bonne réponse : ${vecHTML(q.c[q.a])}</strong> <em>${vecHTML(q.exp)||''}</em>`;
   document.querySelectorAll('.choice').forEach((b,i) => {
     b.disabled = true;
     if(i === q.a) b.classList.add('reveal');
@@ -5211,6 +5286,7 @@ function next(){
 function renderEnd(app){
   clearInterval(timer);
   const total = questions.length;
+  if(total === 0){ renderEmpty(); return; }
   const pct = Math.round(score / total * 100);
   const duration = startTime ? Date.now() - startTime : 0;
   const stars = pct >= 80 ? '⭐⭐⭐' : pct >= 60 ? '⭐⭐' : '⭐';
@@ -5224,17 +5300,19 @@ function renderEnd(app){
   const themeLabel = currentTheme === 'Tous' ? 'Tous les thèmes' : currentTheme.replace(/^[3-6]e — /, '');
   const endTs = Date.now();
   window._lastShare = { score: score, total: total, pct: pct, theme: themeLabel, classe: currentClass, ts: endTs };
-  addToHistory({
-    date: endTs,
-    classe: currentClass,
-    theme: themeLabel,
-    score: score,
-    total: total,
-    pct: pct,
-    duration: duration
-  });
-  // Enregistrer dans le classement
-  submitScore(score, total, pct, themeLabel, currentClass);
+  // Les sessions de révision, de questions perso ou très courtes ne comptent pas
+  const counted = (sessionKind === 'normal' && total >= 5);
+  if(counted){
+    addToHistory({
+      date: endTs,
+      classe: currentClass,
+      theme: themeLabel,
+      score: score,
+      total: total,
+      pct: pct,
+      duration: duration
+    });
+  }
 
   app.innerHTML = `
     <div class="theme-section" id="theme-bar"></div>
@@ -5243,6 +5321,7 @@ function renderEnd(app){
       <div class="end-score">${score}<span style="font-size:24px;color:var(--text-muted)">/${total}</span></div>
       <div class="end-stars">${stars}</div>
       <div class="end-msg">${pct}% — ${msg}</div>
+      ${counted ? '' : '<div style="font-size:11px;color:var(--text-muted);margin-bottom:.8rem;">Session non comptée dans l\'historique ni le classement (révision, questions perso ou moins de 5 questions).</div>'}
       <div class="progress-dots" style="justify-content:center;margin-bottom:1.5rem">${dotsHtml}</div>
       <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:.5rem;">
         <button class="restart-btn" onclick="startQuiz()">↺ Nouvelle session</button>
@@ -5259,6 +5338,10 @@ function renderEnd(app){
     </div>
   `;
   renderThemeBar();
+  // Classement : après l'affichage du score (la demande de pseudo ne bloque plus l'écran)
+  if(counted && total >= 10){
+    setTimeout(function(){ try{ submitScore(score, total, pct, themeLabel, currentClass); }catch(e){} }, 300);
+  }
 }
 
 function renderRecap(){
@@ -5267,10 +5350,10 @@ function renderRecap(){
   const items = sessionDetails.map((d,i) => {
     const {q, chosen, ok} = d;
     return `<div class="recap-item">
-      <div class="recap-q">${i+1}. ${q.q}</div>
+      <div class="recap-q">${i+1}. ${vecHTML(q.q)}</div>
       ${ok
-        ? `<div class="recap-ok">✓ ${q.c[chosen]}</div>`
-        : `<div class="recap-ko">✗ ${(chosen >= 0 && q.c[chosen] !== undefined) ? 'Ta réponse : ' + q.c[chosen] : 'Pas de réponse (temps écoulé)'} &nbsp;|&nbsp; Bonne réponse : ${q.c[q.a]}</div>`
+        ? `<div class="recap-ok">✓ ${vecHTML(q.c[chosen])}</div>`
+        : `<div class="recap-ko">✗ ${(chosen >= 0 && q.c[chosen] !== undefined) ? 'Ta réponse : ' + vecHTML(q.c[chosen]) : 'Pas de réponse (temps écoulé)'} &nbsp;|&nbsp; Bonne réponse : ${vecHTML(q.c[q.a])}</div>`
       }
       <div class="recap-exp">💡 ${vecHTML(q.exp)||''}</div>
     </div>`;
@@ -5334,7 +5417,8 @@ const BADGES = [
   }},
   {id:'allclass', icon:'🏫', label:'Polyvalent',      desc:'Joué dans les 4 classes',         check: h => ['3e','4e','5e','6e'].every(c => h.some(e=>e.classe===c))},
   {id:'master3',  icon:'🥇', label:'Champion 3e',     desc:'10 parties ≥ 80% en 3e',          check: h => h.filter(e=>e.classe==='3e'&&e.pct>=80).length>=10},
-  {id:'speed',    icon:'⚡', label:'Rapide',          desc:'Terminer une partie en moins de 2 min', check: h => h.some(e=>e.duration < 120000)},
+  {id:'speed',    icon:'⚡', label:'Rapide',          desc:'Finir 10 questions ou plus en moins de 2 min avec 60 % ou plus', check: h => h.some(e=>(e.total||0)>=10 && e.pct>=60 && e.duration < 120000)},
+  {id:'master2',  icon:'🎓', label:'Champion 2nd cycle', desc:'10 parties ≥ 80% en 2nde, 1ère ou Tle', check: h => h.filter(e=>!['6e','5e','4e','3e'].includes(e.classe)&&e.pct>=80).length>=10},
   {id:'alltheme', icon:'📚', label:'Explorateur',     desc:'Jouer 5 thèmes différents',       check: h => new Set(h.map(e=>e.theme)).size >= 5},
 ];
 
@@ -5455,7 +5539,7 @@ function shareStamp(ts){
 }
 function plainText(s){
   return String(s == null ? '' : s).replace(/<br\s*\/?>/gi,' ').replace(/<[^>]+>/g,'')
-    .replace(/&nbsp;/g,' ').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+    .replace(/&nbsp;/g,' ').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
 }
 function sharePseudo(){
   let p = '';
@@ -5470,8 +5554,10 @@ function sharePseudo(){
 function shareText(text, title){
   if(navigator.share){
     navigator.share({ title, text }).catch(()=>{});
+  } else if(copyText(text)){
+    alert('Copié ! Colle-le dans WhatsApp ou Facebook.');
   } else {
-    navigator.clipboard.writeText(text).then(()=> alert('Copié ! Colle-le dans WhatsApp ou Facebook.')).catch(()=> alert(text));
+    prompt('Copie ce texte :', text);
   }
 }
 function shareScore(score, total, pct, theme, classe, ts){
@@ -5561,25 +5647,28 @@ function renderClasseQuestion(q, idx, total){
   const choicesHtml = q.c.map((c,i) =>
     `<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:10px;border:2px solid var(--border);margin-bottom:8px;font-size:16px;">
       <span style="width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">${LETTERS[i]}</span>
-      <span>${c}</span>
+      <span>${vecHTML(c)}</span>
     </div>`
   ).join('');
 
   app.innerHTML = `
     <div style="background:var(--accent);color:#fff;border-radius:12px;padding:1rem 1.2rem;margin-bottom:1rem;">
       <div style="font-size:12px;opacity:.8;margin-bottom:.3rem;">Question ${idx+1} / ${total} · 🖥️ Mode Classe</div>
-      <div style="font-size:17px;font-weight:600;line-height:1.5;">${q.q}</div>
+      <div style="font-size:17px;font-weight:600;line-height:1.5;">${vecHTML(q.q)}</div>
     </div>
     <div id="classe-choices">${choicesHtml}</div>
     <div id="classe-reveal" style="margin-top:1rem;"></div>
     <div style="display:flex;gap:8px;margin-top:1rem;">
-      <button onclick="revealClasseAnswer(${q.a},'${vecHTML(q.exp)||''}')" style="flex:1;padding:12px;background:#e65c00;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">👁 Révéler la réponse</button>
+      <button onclick="revealClasseAnswer()" style="flex:1;padding:12px;background:#e65c00;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">👁 Révéler la réponse</button>
       <button onclick="nextClasseQuestion()" style="flex:1;padding:12px;background:var(--surface);border:1px solid var(--border-strong);border-radius:10px;font-size:14px;cursor:pointer;font-family:inherit;color:var(--text);">Suivant →</button>
     </div>
   `;
 }
 
-function revealClasseAnswer(ans, exp){
+function revealClasseAnswer(){
+  const q = classeQuestions[classeIdx];
+  if(!q) return;
+  const ans = q.a, exp = vecHTML(q.exp) || '';
   const LETTERS = ['A','B','C','D'];
   const choices = document.getElementById('classe-choices');
   if(choices){
@@ -5616,6 +5705,8 @@ function nextClasseQuestion(){
 
 // Lancement mode classe sans override récursif
 function launchClasseMode(){
+  // même contrôle d'accès que le quiz : une classe non débloquée est limitée à son thème d'essai
+  if(window.mqAccesGate && window.mqAccesGate()){ classeMode = false; return; }
   classeIdx = 0;
   classeQuestions = getQuestions();
   missedQuestions = []; sessionDetails = [];
@@ -5642,8 +5733,8 @@ function renderCustomQPage(){
     ? '<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:1rem 0;">Aucune question personnalisée.</div>'
     : list.map((q,i) => `
       <div style="padding:10px 0;border-bottom:1px solid var(--border);">
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);">${q.q}</div>
-        <div style="font-size:11px;color:var(--success);margin-top:2px;">✓ ${q.c[q.a]}</div>
+        <div style="font-size:13px;font-weight:600;color:var(--text-primary);">${escHTML(q.q)}</div>
+        <div style="font-size:11px;color:var(--success);margin-top:2px;">✓ ${escHTML(q.c[q.a])}</div>
         <button onclick="deleteCustomQ(${i})" style="font-size:11px;color:var(--danger);background:none;border:none;cursor:pointer;padding:2px 0;margin-top:2px;">🗑 Supprimer</button>
       </div>`).join('');
 
@@ -5697,6 +5788,10 @@ function saveNewCustomQ(){
     alert('Merci de remplir la question et les 4 choix de réponse.');
     return;
   }
+  if(new Set(c.map(x => x.toLowerCase())).size < 4){
+    alert('Les 4 choix de réponse doivent être différents.');
+    return;
+  }
   const list = loadCustomQ();
   list.push({q, c, a, exp, theme:'Mes questions', classe:'Perso'});
   saveCustomQ(list);
@@ -5715,7 +5810,11 @@ function deleteCustomQ(i){
 function playCustomQ(){
   const list = loadCustomQ();
   if(list.length === 0){ alert('Aucune question personnalisée.'); return; }
-  questions = list.sort(() => Math.random() - 0.5).slice(0, Math.min(TOTAL, list.length));
+  // les textes saisis sont échappés (ils ne doivent jamais être interprétés comme du HTML)
+  questions = shuffleArr(list).slice(0, Math.min(TOTAL, list.length)).map(q => shuffledCopy({
+    q: escHTML(q.q), c: q.c.map(escHTML), a: q.a, exp: escHTML(q.exp || ''), theme: 'Mes questions', classe: 'Perso'
+  }));
+  sessionKind = 'perso';
   idx = 0; score = 0; answered = false; results = [];
   missedQuestions = []; sessionDetails = [];
   startTime = Date.now();
@@ -5730,23 +5829,25 @@ function playCustomQ(){
 const LB_KEY = 'mathchrono_leaderboard';
 
 function loadLeaderboard(){
-  try { return JSON.parse(localStorage.getItem(LB_KEY) || '[]'); } catch(e){ return []; }
+  try { const a = JSON.parse(localStorage.getItem(LB_KEY) || '[]'); return Array.isArray(a) ? a : []; } catch(e){ return []; }
 }
 function saveLeaderboard(arr){
   try { localStorage.setItem(LB_KEY, JSON.stringify(arr)); } catch(e){}
 }
 
 function getPseudo(){
-  let p = localStorage.getItem('mathchrono_pseudo') || '';
+  let p = lsGet('mathchrono_pseudo') || '';
   if(!p){
-    p = prompt('👤 Entre ton prénom ou pseudo pour le classement :') || '';
-    p = p.trim().slice(0,20);
-    if(p) localStorage.setItem('mathchrono_pseudo', p);
+    let r = null;
+    try{ r = prompt('👤 Entre ton prénom ou pseudo pour le classement :'); }catch(e){}
+    p = (r || '').replace(/[\r\n]+/g,' ').trim().slice(0,20);
+    if(p) lsSet('mathchrono_pseudo', p);
   }
   return p;
 }
 
 function submitScore(score, total, pct, theme, classe){
+  if(total < 10) return;   // les parties trop courtes ne sont pas classées
   const pseudo = getPseudo();
   if(!pseudo) return;
   const lb = loadLeaderboard();
@@ -5757,22 +5858,22 @@ function submitScore(score, total, pct, theme, classe){
     date: Date.now()
   });
   // Garder les 200 meilleurs scores
-  lb.sort((a,b) => b.pct - a.pct || b.score - a.score);
+  lb.sort((a,b) => b.pct - a.pct || b.total - a.total || b.score - a.score);
   saveLeaderboard(lb.slice(0, 200));
 }
 
 function renderLeaderboardPage(){
   const app = document.getElementById('app');
   const lb = loadLeaderboard();
-  const pseudo = localStorage.getItem('mathchrono_pseudo') || '';
+  const pseudo = lsGet('mathchrono_pseudo') || '';
 
   // Filtres
-  const classes = ['Tous','6e','5e','4e','3e'];
+  const classes = ['Tous','6e','5e','4e','3e','2nde','1ère','Tle'];
   const activeFilter = window._lbFilter || 'Tous';
 
   const filtered = activeFilter === 'Tous'
     ? lb
-    : lb.filter(e => e.classe === activeFilter);
+    : lb.filter(e => e.classe === activeFilter || String(e.classe).indexOf(activeFilter + ' ') === 0);
 
   // Top 20
   const top = filtered.slice(0, 20);
@@ -5785,8 +5886,8 @@ function renderLeaderboardPage(){
         return `<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);${isMe?'background:var(--accent-bg);border-radius:8px;padding:9px 8px;margin:2px 0;':''}">
           <div style="flex-shrink:0;width:28px;text-align:center;font-size:${i<3?'18px':'13px'};font-weight:700;color:var(--text-muted);">${i<3?medals[i]:i+1}</div>
           <div style="flex:1;min-width:0;">
-            <div style="font-size:13px;font-weight:${isMe?'700':'500'};color:${isMe?'var(--accent-text)':'var(--text-primary)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${e.pseudo}${isMe?' (moi)':''}</div>
-            <div style="font-size:11px;color:var(--text-muted);">${e.classe} — ${e.theme}</div>
+            <div style="font-size:13px;font-weight:${isMe?'700':'500'};color:${isMe?'var(--accent-text)':'var(--text-primary)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escHTML(e.pseudo)}${isMe?' (moi)':''}</div>
+            <div style="font-size:11px;color:var(--text-muted);">${escHTML(e.classe)} — ${escHTML(e.theme)}</div>
           </div>
           <div style="text-align:right;flex-shrink:0;">
             <div style="font-size:14px;font-weight:700;color:${e.pct>=80?'var(--success)':e.pct>=60?'#b8860b':'var(--danger)'};">${e.pct}%</div>
@@ -5806,13 +5907,13 @@ function renderLeaderboardPage(){
   app.innerHTML = `
     <div class="theme-section" id="theme-bar"></div>
     <div class="card" style="padding:1rem;margin-bottom:.8rem;">
-      <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:.8rem;">🏅 Classement</div>
+      <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:.8rem;">🏅 Classement<div style="font-size:11px;font-weight:400;color:var(--text-muted);margin-top:2px;">Enregistré sur cet appareil · parties de 10 questions minimum</div></div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;">${filterBtns}</div>
       ${pseudo && myRank > 0 ? `
       <div style="background:var(--accent-bg);border-radius:8px;padding:.7rem 1rem;margin-bottom:1rem;display:flex;gap:12px;align-items:center;">
         <span style="font-size:20px;">👤</span>
         <div>
-          <div style="font-size:12px;color:var(--accent-text);font-weight:700;">${pseudo}</div>
+          <div style="font-size:12px;color:var(--accent-text);font-weight:700;">${escHTML(pseudo)}</div>
           <div style="font-size:11px;color:var(--text-muted);">Rang #${myRank} · Meilleur score : ${myBest}%</div>
         </div>
       </div>` : ''}
@@ -5831,9 +5932,14 @@ function renderLeaderboardPage(){
 }
 
 function changePseudo(){
-  localStorage.removeItem('mathchrono_pseudo');
-  const p = prompt('👤 Nouveau pseudo :') || '';
-  if(p.trim()) localStorage.setItem('mathchrono_pseudo', p.trim().slice(0,20));
+  const old = lsGet('mathchrono_pseudo') || '';
+  let r = null;
+  try{ r = prompt('👤 Nouveau pseudo :', old); }catch(e){}
+  const p = (r || '').replace(/[\r\n]+/g,' ').trim().slice(0,20);
+  if(p && p !== old){
+    lsSet('mathchrono_pseudo', p);
+    if(old){ const lb = loadLeaderboard(); lb.forEach(e => { if(e.pseudo === old) e.pseudo = p; }); saveLeaderboard(lb); }
+  }
   renderLeaderboardPage();
 }
 
@@ -5847,20 +5953,20 @@ function clearLeaderboard(){
 function payerMomo(){
   const montant = prompt("💛 Soutenir Francis EGOUNLETI\n\nEntrez le montant à envoyer via MTN MoMo (en FCFA) :");
   if(montant === null) return;
-  const val = parseInt(montant.trim());
+  const val = /^\d{1,7}$/.test(montant.replace(/\s/g,'')) ? parseInt(montant.replace(/\s/g,''), 10) : 0;
   if(!val || val <= 0){ alert("Veuillez entrer un montant valide."); return; }
-  window.location.href = "tel:*880*41*171251*" + val + "%23";
+  dialUSSD("*880*41*171251*" + val + "#");
 }
 
 function payerMoov(){
   const montant = prompt("💛 Soutenir Francis EGOUNLETI\n\nEntrez le montant à envoyer via Moov Money (en FCFA) :");
   if(montant === null) return;
-  const val = parseInt(montant.trim());
+  const val = /^\d{1,7}$/.test(montant.replace(/\s/g,'')) ? parseInt(montant.replace(/\s/g,''), 10) : 0;
   if(!val || val <= 0){ alert("Veuillez entrer un montant valide."); return; }
-  window.location.href = "tel:*855*41*258051*" + val + "*1%23";
+  dialUSSD("*855*41*258051*" + val + "*1#");
 }
 
-startQuiz();
+/* le premier quiz est lancé par init() du module d'accès, une fois les codes lus */
 
 
 
@@ -10963,10 +11069,14 @@ startQuiz();
   function root(){ var r=document.getElementById('print-root'); if(!r){ r=document.createElement('div'); r.id='print-root'; document.body.appendChild(r); } return r; }
   function printDoc(html,title){
     var r=root(); r.innerHTML=html; var old=document.title; document.title=title;
-    document.body.classList.add('printing');
-    var done=function(){ document.body.classList.remove('printing'); document.title=old; r.innerHTML=''; window.removeEventListener('afterprint',done); };
-    window.addEventListener('afterprint',done);
-    setTimeout(function(){ window.print(); },60);
+    document.body.classList.add('printing'); window.__mqPrinting=true;
+    var finished=false, onAfter;
+    var done=function(){ if(finished) return; finished=true; document.body.classList.remove('printing'); document.title=old; r.innerHTML=''; window.__mqPrinting=false; window.removeEventListener('afterprint',onAfter); };
+    /* sur mobile, l'aperçu PDF est construit après coup : on garde le document imprimable un moment après « afterprint » */
+    onAfter=function(){ setTimeout(done,2000); };
+    window.addEventListener('afterprint',onAfter);
+    setTimeout(function(){ try{ window.print(); }catch(e){ done(); } },60);
+    setTimeout(done,180000);
   }
 
   /* ---- page de l'enseignant ---- */
@@ -11052,7 +11162,7 @@ startQuiz();
   window.evDiff=function(on){ st.diff=!!on; if(on) st.ab=false; st.seed=null; renderEvalPage(); };
   window.evGen=function(){ if(!st.th.length) return; st.seed=(Math.floor(Math.random()*4294967295)>>>0); renderEvalPage(); };
   window.evCleanRef=function(el){ var c=cleanRef(el.value); if(c&&c!==el.value) el.value=c; };
-  window.evCopy=function(){ var r=encode(params(),'F'); try{ navigator.clipboard.writeText(r); }catch(e){} var b=event&&event.target; if(b){ var o=b.textContent; b.textContent='\u2705 R\u00e9f\u00e9rence copi\u00e9e'; setTimeout(function(){ b.textContent=o; },1600); } };
+  window.evCopy=function(){ var r=encode(params(),'F'); copyText(r); var b=window.event&&window.event.target; if(b){ var o=b.textContent; b.textContent='\u2705 R\u00e9f\u00e9rence copi\u00e9e'; setTimeout(function(){ b.textContent=o; },1600); } };
   window.evFind=function(){
     var v=document.getElementById('ev-ref').value, p=decode(v), m=document.getElementById('ev-msg');
     if(!p||p.error){ m.textContent=(p&&p.error)||'R\u00e9f\u00e9rence invalide : v\u00e9rifie qu\u2019elle est recopi\u00e9e en entier.'; return; }
@@ -11087,6 +11197,7 @@ startQuiz();
 /* ===== Évaluation sommative : interface, code enseignant signé, en-tête du sujet ===== */
 (function(){
   var PUB={"kty": "EC", "crv": "P-256", "x": "mcuMAjczdv4fga_RPtvefmgofGSNHE3nsZTmFOiEs5A", "y": "Njh8oIEuwagGGsKdrH4ThAuCnSqRhtotIRitCgkbZ-s"}, WA='2290197890952', LSK='mq_lic', SOMV=2; /* version du moteur : champ « n » de la référence = SOMV × 10 + consignes par problème (la version 1 = 4 consignes) */
+  window.__MQ_PUB=PUB;
   var ss={cls:'3e',th:[],seed:null,msg:'',dur:120,lic:null,chk:false,calc:null};
   function EVX(){ return window.__EV; }
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -11102,22 +11213,23 @@ startQuiz();
     code=String(code||'').replace(/\s+/g,'');
     var m=/^MQ1\.([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)$/.exec(code);
     if(!m) return Promise.resolve({ok:false,err:'Code invalide : copie-le en entier, sans rien ajouter ni retirer.'});
-    if(!(window.crypto&&window.crypto.subtle)) return Promise.resolve({ok:false,err:'Ce navigateur ne permet pas de v\u00e9rifier le code. Ouvre le site avec Chrome, en connexion s\u00e9curis\u00e9e.'});
+    if(!(window.crypto&&window.crypto.subtle)) return Promise.resolve({ok:false,soft:true,err:'Ce navigateur ne permet pas de v\u00e9rifier le code. Ouvre le site avec Chrome, en connexion s\u00e9curis\u00e9e.'});
     var pb,sg; try{ pb=b64u(m[1]); sg=b64u(m[2]); }catch(e){ return Promise.resolve({ok:false,err:'Code invalide.'}); }
     return crypto.subtle.importKey('jwk',PUB,{name:'ECDSA',namedCurve:'P-256'},false,['verify']).then(function(k){ return crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},k,sg,pb); }).then(function(ok){
       if(!ok) return {ok:false,err:'Code incorrect. V\u00e9rifie-le ou demande-le \u00e0 nouveau sur WhatsApp.'};
       var p; try{ p=JSON.parse(new TextDecoder().decode(pb)); }catch(e){ return {ok:false,err:'Code invalide.'}; }
       if(p&&p.t) return {ok:false,err:'Ceci est un code \u00e9l\u00e8ve (classe). Il se colle sur l\u2019\u00e9cran de la classe, pas ici.'};
+      var dv=window.mqDeviceCheck(p); if(dv) return dv;
       var ex=effExp(p);
       if(!ex||ex<today()) return {ok:false,expired:true,name:p&&p.n,exp:ex,err:'Ce code a expir\u00e9'+(ex?' le '+frDate(ex):'')+'. Demande-en un nouveau sur WhatsApp.'};
       return {ok:true,name:p.n||'',exp:ex,code:code};
-    }).catch(function(){ return {ok:false,err:'Code invalide.'}; });
+    }).catch(function(){ return {ok:false,soft:true,err:'Code invalide.'}; });
   }
   function unlocked(){ return !!(ss.lic&&ss.lic.ok&&ss.lic.exp>=today()); }
   function stored(){ try{ return localStorage.getItem(LSK)||''; }catch(e){ return ''; } }
   function ensure(cb){
     if(unlocked()){ cb(); return; } ss.lic=null; var c=stored(); if(!c||ss.chk){ cb(); return; }
-    ss.chk=true; verify(c).then(function(r){ ss.chk=false; if(r.ok) ss.lic=r; else { ss.msg=r.err||''; if(!r.expired){ try{ localStorage.removeItem(LSK); }catch(e){} } } cb(); });
+    ss.chk=true; verify(c).then(function(r){ ss.chk=false; if(r.ok) ss.lic=r; else { ss.msg=r.err||''; if(!r.expired&&!r.soft){ try{ localStorage.removeItem(LSK); }catch(e){} } } cb(); });
   }
   function themes(){ return window.MQ_SOM.availableThemes(ss.cls); }
   function modOf(t){ var l=themes(); for(var i=0;i<l.length;i++) if(l[i].theme===t) return l[i].mod; return null; }
@@ -11165,7 +11277,7 @@ startQuiz();
         (miss.length?'<div style="font-size:12px;color:#8a5a00;background:#fff4dc;border-radius:8px;padding:7px 9px;margin-bottom:10px;line-height:1.45;">En-t\u00eate incomplet : '+miss.join(', ')+' ne '+(miss.length>1?'seront':'sera')+' pas imprim\u00e9'+(miss.length>1?'s':'')+' (ligne \u00e0 remplir \u00e0 la main).</div>':'')+
         '<div style="display:flex;gap:6px;margin-bottom:6px;"><button onclick="somPrint(\'sujet\')" style="flex:1;padding:11px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;font-size:13px;font-family:inherit;cursor:pointer;">\u2b07 Sujet PDF</button><button onclick="somWord(\'sujet\')" style="flex:1;padding:11px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;font-size:13px;font-family:inherit;cursor:pointer;">\u2b07 Sujet Word</button></div>'+
         '<div style="display:flex;gap:6px;margin-bottom:8px;"><button onclick="somPrint(\'corrige\')" style="flex:1;padding:11px;border:none;border-radius:10px;background:var(--success);color:#fff;font-weight:700;font-size:13px;font-family:inherit;cursor:pointer;">\u2b07 Corrig\u00e9 PDF</button><button onclick="somWord(\'corrige\')" style="flex:1;padding:11px;border:none;border-radius:10px;background:var(--success);color:#fff;font-weight:700;font-size:13px;font-family:inherit;cursor:pointer;">\u2b07 Corrig\u00e9 Word</button></div>'+
-        '<button onclick="somCopy()" style="'+BTN+'background:transparent;border:1px solid var(--border-strong);color:var(--text-sec);font-weight:600;font-size:13px;">\ud83d\udccb Copier la r\u00e9f\u00e9rence</button>'+
+        '<button onclick="somCopy(this)" style="'+BTN+'background:transparent;border:1px solid var(--border-strong);color:var(--text-sec);font-weight:600;font-size:13px;">\ud83d\udccb Copier la r\u00e9f\u00e9rence</button>'+
         '<div style="font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5;">PDF : dans la fen\u00eatre d\u2019impression, choisis \u00ab Enregistrer au format PDF \u00bb. Word : le fichier se t\u00e9l\u00e9charge et reste modifiable.</div></div>'; }
     app.innerHTML='<div class="card" style="padding:1.1rem;">'+head+tiles+
       '<div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--text-muted);margin-bottom:10px;"><span>\u2705 Acc\u00e8s enseignant : <b style="color:var(--text);">'+esc(ss.lic.name||'')+'</b> \u00b7 valable jusqu\u2019au '+frDate(ss.lic.exp)+'</span><a href="#" onclick="somLogout();return false;" style="color:var(--accent);">Quitter</a></div>'+
@@ -11188,11 +11300,11 @@ startQuiz();
   };
   window.somAsk=function(){ var n=document.getElementById('som-nom').value.trim(), e=document.getElementById('som-etab').value.trim(), m=document.getElementById('som-msg'); ss.askNom=n; ss.askEtab=e;
     if(!n){ m.textContent='Indique ton nom pour que je sache \u00e0 qui envoyer le code.'; return; }
-    var txt='Bonjour, je suis '+n+', enseignant(e) de math\u00e9matiques'+(e?' \u00e0 '+e:'')+'. Je souhaite recevoir mon code d\u2019acc\u00e8s \u00e0 l\u2019\u00e9valuation sommative de MathChrono-Quiz. Merci.';
+    var txt='Bonjour, je suis '+n+', enseignant(e) de math\u00e9matiques'+(e?' \u00e0 '+e:'')+'. Je souhaite recevoir mon code d\u2019acc\u00e8s \u00e0 l\u2019\u00e9valuation sommative de MathChrono-Quiz. Identifiant de mon appareil : '+window.mqDeviceId()+'. Merci.';
     var url='https://wa.me/'+WA+'?text='+encodeURIComponent(txt); try{ window.open(url,'_blank'); }catch(x){ location.href=url; } };
   window.somUnlock=function(){ var v=document.getElementById('som-code').value, m=document.getElementById('som-msg'); if(!v.trim()){ m.textContent='Colle le code re\u00e7u sur WhatsApp.'; return; } m.style.color='var(--text-muted)'; m.textContent='V\u00e9rification\u2026';
     verify(v).then(function(r){ if(r.ok){ try{ localStorage.setItem(LSK,r.code); }catch(e){} ss.lic=r; ss.msg=''; if(window.MQ_ACCES) MQ_ACCES.refresh(); draw(); } else { m.style.color='var(--danger)'; m.textContent=r.err; } }); };
-  window.somLogout=function(){ try{ localStorage.removeItem(LSK); }catch(e){} ss.lic=null; ss.msg=''; draw(); };
+  window.somLogout=function(){ try{ localStorage.removeItem(LSK); }catch(e){} ss.lic=null; ss.msg=''; if(window.MQ_ACCES) MQ_ACCES.refresh(); draw(); };
   window.somCls=function(c){ ss.cls=c; ss.th=[]; ss.seed=null; ss.msg=''; ss.calc=null; ss.dur=window.MQ_SOM.defaultDur(c); draw(); };
   window.somCalc=function(on){ ss.calc=!!on; draw(); };
   window.somTheme=function(i){ var o=themes()[i], k=ss.th.indexOf(o.theme); if(k>=0) ss.th.splice(k,1); else { var m=mods(); var cap=window.MQ_SOM.sizing(ss.dur,ss.cls).cap; if(m.indexOf(o.mod)<0&&m.length>=cap){ ss.msg=cap+' th\u00e8mes au maximum pour une \u00e9preuve de '+window.MQ_SOM.fmtDur(ss.dur)+'.'; draw(); return; } ss.th.push(o.theme); } ss.msg=''; ss.seed=null; draw(); };
@@ -11202,19 +11314,19 @@ startQuiz();
   window.somPrint=function(kind){ if(ss.seed==null||!unlocked()) return; var E=build(), r=ref(); EVX().printDoc(kind==='sujet'?window.MQ_SOM.sujetHTML(E,r):window.MQ_SOM.corrigeHTML(E,r),'MathChrono-Quiz_'+(kind==='sujet'?'Sujet':'Corrige')+'_Sommative_'+ss.cls.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]/g,'')+'_'+safe(r)); };
   window.somWord=function(kind){ if(ss.seed==null||!unlocked()) return; var E=build(), r=ref(), p=(kind==='sujet')?window.MQ_SOM.sujetDocx(E,r):window.MQ_SOM.corrigeDocx(E,r);
     return p.then(function(bytes){ EVX().download(bytes,'MathChrono-Quiz_'+(kind==='sujet'?'Sujet':'Corrige')+'_Sommative_'+ss.cls.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]/g,'')+'_'+safe(r)+'.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document'); }); };
-  window.somCopy=function(){ try{ navigator.clipboard.writeText(ref()); }catch(e){} var b=window.event&&window.event.target; if(b){ var o=b.textContent; b.textContent='\u2705 R\u00e9f\u00e9rence copi\u00e9e'; setTimeout(function(){ b.textContent=o; },1600); } };
+  window.somCopy=function(btn){ copyText(ref()); var b=btn||(window.event&&window.event.target); if(b){ var o=b.textContent; b.textContent='\u2705 R\u00e9f\u00e9rence copi\u00e9e'; setTimeout(function(){ b.textContent=o; },1600); } };
   window.somLoad=function(p){ var ver=p.n===1?1:Math.floor(p.n/10), per=p.n===1?4:p.n%10; if(ver!==1&&ver!==SOMV||per<3||per>8){ ss.msg='Cette \u00e9preuve vient d\u2019une autre version de la banque de probl\u00e8mes.'; window.renderSomPage(); return; } ss.cls=p.cls; ss.th=p.th.slice(); ss.seed=p.seed; ss.msg=''; var dd=window.MQ_SOM.defaultDur(p.cls); ss.dur=(window.MQ_SOM.perProb(dd,p.cls)===per)?dd:window.MQ_SOM.durOfPer(per,p.cls); window.renderSomPage(); };
   window.somFind=function(){ var v=document.getElementById('som-ref').value, d=EVX().decode(v), m=document.getElementById('som-msg'); if(!d||d.error){ m.textContent=(d&&d.error)||'R\u00e9f\u00e9rence invalide : v\u00e9rifie qu\u2019elle est recopi\u00e9e en entier.'; return; } if(d.mode!=='S'){ m.textContent='Cette r\u00e9f\u00e9rence concerne une \u00e9valuation formative.'; return; } window.somLoad(d); };
   /* ---- ouverture par lien : https://.../?code=MQ1.... ---- */
   window.somFromUrl=function(){ try{ var q=new URLSearchParams(location.search), c=q.get('code'); if(!c) return Promise.resolve(null); if(window.MQ_ACCES&&MQ_ACCES.peekType(c)==='E') return Promise.resolve(null);
-    return verify(c).then(function(r){ if(r.ok){ try{ localStorage.setItem(LSK,r.code); }catch(e){} ss.lic=r; ss.msg=''; } else ss.msg=r.err; try{ history.replaceState(null,'',location.pathname); }catch(e){} EVX().state.kind='S'; setTimeout(function(){ if(window.renderEvalPage) window.renderEvalPage(); },700); return r; }); }catch(e){ return Promise.resolve(null); } };
+    return verify(c).then(function(r){ if(r.ok){ try{ localStorage.setItem(LSK,r.code); }catch(e){} ss.lic=r; ss.msg=''; if(window.MQ_ACCES) MQ_ACCES.refresh(); } else ss.msg=r.err; try{ history.replaceState(null,'',location.pathname); }catch(e){} EVX().state.kind='S'; setTimeout(function(){ if(window.renderEvalPage) window.renderEvalPage(); },700); return r; }); }catch(e){ return Promise.resolve(null); } };
   window.__SOM={state:ss,build:build,ref:ref,verify:verify,unlocked:unlocked,today:today};
   if(typeof document!=='undefined'&&document.readyState!=='loading') setTimeout(window.somFromUrl,300); else if(typeof document!=='undefined') document.addEventListener('DOMContentLoaded',function(){ setTimeout(window.somFromUrl,300); });
 })();
 
 /* ===== Accès élève : code personnel par classe (200 F, 30 jours), thème d'essai gratuit ===== */
 (function(){
-  var PUB={"kty": "EC", "crv": "P-256", "x": "mcuMAjczdv4fga_RPtvefmgofGSNHE3nsZTmFOiEs5A", "y": "Njh8oIEuwagGGsKdrH4ThAuCnSqRhtotIRitCgkbZ-s"}, LSK='mq_acc';
+  var PUB=window.__MQ_PUB, LSK='mq_acc';
   var PAY={ MONTANT:200, JOURS:30, WHATSAPP:'2290197890952',
     CODE_MOOV:'*855*41*258051*{M}*1#', CODE_MTN:'*880*41*171251*{M}#' };
   var ACC={};            /* classe -> {exp,name,code} : codes élèves valides */
@@ -11241,19 +11353,20 @@ startQuiz();
     code=String(code||'').replace(/\s+/g,'');
     var m=/^MQ1\.([A-Za-z0-9_-]+)\.([A-Za-z0-9_-]+)$/.exec(code);
     if(!m) return Promise.resolve({ok:false,err:'Code invalide : copie-le en entier, sans rien ajouter ni retirer.'});
-    if(!(window.crypto&&window.crypto.subtle)) return Promise.resolve({ok:false,err:'Ce navigateur ne permet pas de vérifier le code. Ouvre le site avec Chrome, en connexion sécurisée.'});
+    if(!(window.crypto&&window.crypto.subtle)) return Promise.resolve({ok:false,soft:true,err:'Ce navigateur ne permet pas de vérifier le code. Ouvre le site avec Chrome, en connexion sécurisée.'});
     var pb,sg; try{ pb=b64u(m[1]); sg=b64u(m[2]); }catch(e){ return Promise.resolve({ok:false,err:'Code invalide.'}); }
     return crypto.subtle.importKey('jwk',PUB,{name:'ECDSA',namedCurve:'P-256'},false,['verify']).then(function(k){ return crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},k,sg,pb); }).then(function(ok){
       if(!ok) return {ok:false,err:'Code incorrect. Vérifie-le ou demande-le à nouveau sur WhatsApp.'};
       var p; try{ p=JSON.parse(new TextDecoder().decode(pb)); }catch(e){ return {ok:false,err:'Code invalide.'}; }
       if(p.t!=='E'){ return {ok:false,teacher:true,err:'Ceci est un code enseignant. Il se colle dans « Évaluation à imprimer » puis « Sommative ».'}; }
       if(allClasses().indexOf(p.c)<0) return {ok:false,err:'Code invalide.'};
+      var dv=window.mqDeviceCheck(p); if(dv) return dv;
       var ex=(p.i&&/^\d{4}-\d{2}-\d{2}$/.test(p.i))?addDays(p.i,PAY.JOURS):'';
       if(p.e&&p.e<ex) ex=p.e;
       if(!ex) return {ok:false,err:'Code invalide.'};
       if(ex<today()) return {ok:false,expired:true,cls:p.c,exp:ex,err:'Ce code (classe '+p.c+') a expiré le '+frDate(ex)+'. Pour continuer, paie à nouveau 200 F et demande un nouveau code.'};
       return {ok:true,cls:p.c,name:p.n||'',exp:ex,code:code};
-    }).catch(function(){ return {ok:false,err:'Code invalide.'}; });
+    }).catch(function(){ return {ok:false,soft:true,err:'Code invalide.'}; });
   }
 
   /* ---- mémoire des codes sur le téléphone ---- */
@@ -11263,7 +11376,7 @@ startQuiz();
   function refresh(){
     var codes=loadStore(); ACC={};
     return Promise.all(codes.map(verify)).then(function(rs){
-      var keep=[]; rs.forEach(function(r,i){ if(r.ok){ var old=ACC[r.cls]; if(!old||old.exp<r.exp) ACC[r.cls]={exp:r.exp,name:r.name,code:r.code}; keep.push(codes[i]); } });
+      var keep=[]; rs.forEach(function(r,i){ if(r.ok){ var old=ACC[r.cls]; if(!old||old.exp<r.exp) ACC[r.cls]={exp:r.exp,name:r.name,code:r.code}; keep.push(codes[i]); } else if(r.soft){ keep.push(codes[i]); } });
       if(keep.length!==codes.length) saveStore(keep);
       var st=null; try{ st=localStorage.getItem('mq_lic'); }catch(e){}
       if(st&&window.__SOM&&window.__SOM.verify) return window.__SOM.verify(st).then(function(r){ teacherExp=(r&&r.ok)?r.exp:''; }); teacherExp='';
@@ -11303,13 +11416,14 @@ startQuiz();
     mqPayPage(currentTheme); return true;
   };
 
-  function codeAvec(m){ return m.replace('{M}',String(PAY.MONTANT)); }
+  function codeAvec(m,n){ return m.replace('{M}',String(n||PAY.MONTANT)); }
   function lienTel(c){ return 'tel:'+c.replace(/#/g,'%23'); }
 
   function mqPayPage(theme){
     var app=document.getElementById('app'), cls=currentClass; if(!app) return;
     try{ clearInterval(timer); }catch(e){}
     var moov=codeAvec(PAY.CODE_MOOV), mtn=codeAvec(PAY.CODE_MTN), t=trial(cls);
+    var ENS=window.MQ_CFG.MONTANT_ENS, moovE=codeAvec(PAY.CODE_MOOV,ENS), mtnE=codeAvec(PAY.CODE_MTN,ENS), dev=window.mqDeviceId(), cryptoOk=!!(window.crypto&&window.crypto.subtle), pending=loadStore().length;
     var B='display:block;width:100%;box-sizing:border-box;text-align:center;text-decoration:none;padding:13px;border:0;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:inherit;';
     var I='width:100%;box-sizing:border-box;padding:11px;border:1px solid var(--border-strong);border-radius:8px;font-size:15px;margin-top:6px;font-family:inherit;background:var(--surface);color:var(--text-primary);';
     var CD='font-family:monospace;background:var(--surface2);border-radius:8px;padding:7px;font-size:12.5px;word-break:break-all;margin-top:5px;';
@@ -11321,8 +11435,8 @@ startQuiz();
       '<button onclick="mqTrial()" style="'+B+'background:transparent;border:1px solid var(--accent);color:var(--accent-text);">▶ Essayer gratuitement : '+esc(label(t))+'</button>'+
       '<div style="'+H+'">Étape 1 · Payer '+PAY.MONTANT+' F</div>'+
       '<p style="margin:4px 0;">Touche ton opérateur : le code de paiement s\'ouvre dans le clavier du téléphone. Valide, puis entre ton code secret.</p>'+
-      '<a id="mqPayMoov" href="'+lienTel(moov)+'" style="'+B+'background:#6a2c91;color:#fff;">🟣 Payer avec Moov Money</a><div style="'+CD+'">Moov : '+esc(moov)+'</div>'+
-      '<a id="mqPayMtn" href="'+lienTel(mtn)+'" style="'+B+'background:#d89a00;color:#222;">🟡 Payer avec MTN MoMo</a><div style="'+CD+'">MTN : '+esc(mtn)+'</div>'+
+      '<a id="mqPayMoov" data-ussd="'+esc(moov)+'" href="'+lienTel(moov)+'" style="'+B+'background:#6a2c91;color:#fff;">🟣 Payer avec Moov Money</a><div style="'+CD+'">Moov : '+esc(moov)+'</div>'+
+      '<a id="mqPayMtn" data-ussd="'+esc(mtn)+'" href="'+lienTel(mtn)+'" style="'+B+'background:#d89a00;color:#222;">🟡 Payer avec MTN MoMo</a><div style="'+CD+'">MTN : '+esc(mtn)+'</div>'+
       '<p style="font-size:12px;color:var(--text-muted);margin:6px 0;">Si le clavier ne s\'ouvre pas, copie le code ci-dessus et compose-le à la main.</p>'+
       '<div style="'+H+'">Étape 2 · Demander ton code</div>'+
       '<input id="mqNom" placeholder="Ton nom et prénom" autocomplete="name" style="'+I+'">'+
@@ -11333,6 +11447,13 @@ startQuiz();
       '<textarea id="mqCode" rows="3" placeholder="Colle ici le code reçu (il commence par MQ1.)" autocomplete="off" style="'+I+'font-family:monospace;font-size:12px;"></textarea>'+
       '<button onclick="mqActivate()" style="'+B+'background:var(--accent);color:#fff;">🔓 Activer mon code</button>'+
       '<div id="mqMsg" style="font-size:13px;color:var(--danger);margin-top:8px;min-height:18px;"></div>'+
+      (pending&&!cryptoOk?'<div style="font-size:12.5px;color:var(--danger);margin-top:6px;">Un code est enregistré sur cet appareil, mais ce navigateur ne peut pas le vérifier. Ouvre le site avec Chrome (lien https) : ton code est conservé.</div>':'')+
+      '<div style="'+H+'">👩‍🏫 Tu es enseignant ?</div>'+
+      '<p style="margin:4px 0;">Le <b>code enseignant</b> ('+ENS+' FCFA, valable 2 mois) débloque <b>toutes les classes</b> : quiz, résumés de cours, évaluations, mode classe, ainsi que les évaluations sommatives. Colle-le à l\'étape 3.</p>'+
+      '<a data-ussd="'+esc(moovE)+'" href="'+lienTel(moovE)+'" style="'+B+'background:#6a2c91;color:#fff;">🟣 Payer '+ENS+' F avec Moov Money</a>'+
+      '<a data-ussd="'+esc(mtnE)+'" href="'+lienTel(mtnE)+'" style="'+B+'background:#d89a00;color:#222;">🟡 Payer '+ENS+' F avec MTN MoMo</a>'+
+      '<a id="mqWaEns" href="#" onclick="return mqWhatsappEns(this)" style="'+B+'background:#1a5c1f;color:#fff;">📲 J\'ai payé '+ENS+' F : demander mon code enseignant</a>'+
+      '<div style="font-size:12px;color:var(--text-muted);margin-top:12px;">Identifiant de cet appareil (joint automatiquement à ta demande) : <b style="font-family:monospace;color:var(--text);">'+esc(dev)+'</b></div>'+
       '</div>';
     try{ renderThemeBar(); }catch(e){} try{ window.scrollTo(0,0); }catch(e){}
   }
@@ -11344,10 +11465,30 @@ startQuiz();
     if(!n){ m.style.color='var(--danger)'; m.textContent='Écris ton nom.'; return false; }
     if(!r){ m.style.color='var(--danger)'; m.textContent='Écris la référence de la transaction (SMS de confirmation).'; return false; }
     m.textContent='';
-    var txt='Bonjour, j\'ai payé '+PAY.MONTANT+' FCFA pour : accès à la classe de '+currentClass+' ('+PAY.JOURS+' jours).\nNom : '+n+'\nClasse : '+currentClass+'\nRéférence de la transaction : '+r+'\nMerci de m\'envoyer mon code d\'accès.';
+    var txt='Bonjour, j\'ai payé '+PAY.MONTANT+' FCFA pour : accès à la classe de '+currentClass+' ('+PAY.JOURS+' jours).\nNom : '+n+'\nClasse : '+currentClass+'\nRéférence de la transaction : '+r+'\nIdentifiant de mon appareil : '+window.mqDeviceId()+'\nMerci de m\'envoyer mon code d\'accès.';
     el.href='https://wa.me/'+PAY.WHATSAPP+'?text='+encodeURIComponent(txt); el.target='_blank'; return true;
   };
 
+  window.mqWhatsappEns=function(el){
+    var n=document.getElementById('mqNom').value.trim(), r=document.getElementById('mqRef').value.trim(), m=document.getElementById('mqMsg'), ENS=window.MQ_CFG.MONTANT_ENS;
+    if(!n){ m.style.color='var(--danger)'; m.textContent='Écris ton nom (étape 2).'; return false; }
+    if(!r){ m.style.color='var(--danger)'; m.textContent='Écris la référence de la transaction (étape 2).'; return false; }
+    m.textContent='';
+    var txt='Bonjour, j\'ai payé '+ENS+' FCFA pour un code enseignant (accès à toutes les classes).\nNom : '+n+'\nRéférence de la transaction : '+r+'\nIdentifiant de mon appareil : '+window.mqDeviceId()+'\nMerci de m\'envoyer mon code enseignant.';
+    el.href='https://wa.me/'+PAY.WHATSAPP+'?text='+encodeURIComponent(txt); el.target='_blank'; return true;
+  };
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[data-ussd]'):null; if(!a) return;
+    if(!/Android/i.test(navigator.userAgent)){ e.preventDefault(); try{ prompt('Compose ce code depuis le clavier de ton téléphone :',a.getAttribute('data-ussd')); }catch(x){} }
+  });
+  /* code enseignant collé sur l'écran de paiement : il est enregistré comme dans « Évaluation sommative » */
+  function activateTeacher(code){
+    if(!(window.__SOM&&window.__SOM.verify)) return Promise.resolve({ok:false,err:'Module enseignant indisponible.'});
+    return window.__SOM.verify(code).then(function(r){
+      if(r.ok){ try{ localStorage.setItem('mq_lic',r.code); }catch(e){} try{ window.__SOM.state.lic=r; }catch(e){} return refresh().then(function(){ r.teacher=true; return r; }); }
+      return r;
+    });
+  }
   function activate(code,fromUrl){
     return verify(code).then(function(r){
       if(r.ok){ addToStore(r.code); return refresh().then(function(){ return r; }); }
@@ -11358,8 +11499,10 @@ startQuiz();
     var v=document.getElementById('mqCode').value, m=document.getElementById('mqMsg');
     if(!v.trim()){ m.style.color='var(--danger)'; m.textContent='Colle le code reçu sur WhatsApp.'; return; }
     m.style.color='var(--text-muted)'; m.textContent='Vérification…';
-    activate(v).then(function(r){
+    var job=(peekType(v)==='E')?activate(v):activateTeacher(v);
+    job.then(function(r){
       if(!r.ok){ m.style.color='var(--danger)'; m.textContent=r.err; return; }
+      if(r.teacher){ currentTheme='Tous'; startQuiz(); return; }
       if(r.cls!==currentClass){ goClass(r.cls); } else { currentTheme='Tous'; startQuiz(); }
     });
   };
@@ -11375,13 +11518,36 @@ startQuiz();
 
   window.MQ_ACCES={canClass:canClass,canTheme:canTheme,trial:trial,verify:verify,refresh:refresh,state:function(){ return {ACC:ACC,teacherExp:teacherExp,ready:ready}; },PAY:PAY,addDays:addDays,peekType:peekType};
 
-  function init(){ refresh().then(function(){
-    /* le quiz démarre avant la lecture des codes : on le relance si l'écran affiché ne correspond plus aux droits */
-    try{
-      if(document.getElementById('mqCode')){ if(canClass(currentClass)) startQuiz(); }
-      else if(!canClass(currentClass)&&currentTheme==='Tous') startQuiz();
-    }catch(e){}
-    return window.mqAccesFromUrl(); }); }
+  /* évaluation formative (PDF) : réservée aux classes débloquées, hors thème d'essai */
+  function evAllowed(){
+    if(window.MQ_CFG&&window.MQ_CFG.GATE_EVAL===false) return true;
+    var E=window.__EV&&window.__EV.state; if(!E||!E.cls) return true;
+    if(E.kind==='S') return true;
+    if(canClass(E.cls)) return true;
+    var tr=trial(E.cls);
+    return E.th.length>0&&E.th.every(function(x){ return x===tr; });
+  }
+  function evDeny(){
+    var E=window.__EV.state;
+    if(confirm('La classe de '+E.cls+' est verrouillée : seul son thème d\'essai peut être imprimé. Voir comment la débloquer (200 F, ou code enseignant) ?')){
+      try{ goClass(E.cls); currentTheme='Tous'; mqPayPage('Tous'); }catch(e){}
+    }
+  }
+  ['evGen','evPrint'].forEach(function(n){
+    var f=window[n]; if(typeof f!=='function') return;
+    window[n]=function(){ if(!evAllowed()){ evDeny(); return; } return f.apply(this,arguments); };
+  });
+
+  /* démarrage : le premier quiz n'est lancé qu'après la lecture des codes (plus de quiz « Tous thèmes » affiché une seconde) */
+  function init(){
+    refresh().catch(function(){}).then(function(){
+      var qc=null; try{ qc=new URLSearchParams(location.search).get('code'); }catch(e){}
+      var teacherLink=!!(qc&&peekType(qc)!=='E');
+      if(!teacherLink){ try{ startQuiz(); }catch(e){} }
+      return window.mqAccesFromUrl();
+    });
+    setTimeout(function(){ var a=document.getElementById('app'); if(a&&!a.innerHTML.trim()){ try{ startQuiz(); }catch(e){} } },3500);
+  }
   init();
 })();
 
@@ -17691,12 +17857,16 @@ window.MQ_COURS['Tle D'] = Object.assign(window.MQ_COURS['Tle D'] || {}, {
   }
 
   function restore(){
+    if(window.__mqPrinting){ return; }
     var a = appEl();
     inSub = false; pushed = false; confirmed = false;
     classeMode = false;
-    if(a && snap !== null) a.innerHTML = snap;
+    // une page de paiement mémorisée est périmée (les droits ont pu changer) : on relance le quiz
+    var stalePay = (snap !== null && snap.indexOf('id="mqCode"') >= 0);
     if(saved){ missedQuestions = saved.missed; sessionDetails = saved.details; startTime = saved.start; }
-    snap = null; saved = null;
+    var s = snap; snap = null; saved = null;
+    if(stalePay){ pausedLeft = null; try{ startQuiz(); }catch(e){} try{ window.scrollTo(0, 0); }catch(e){} return; }
+    if(a && s !== null) a.innerHTML = s;
     if(pausedLeft !== null){ var t = pausedLeft; pausedLeft = null; startTimer(t); }
     try { window.scrollTo(0, 0); } catch(e){}
   }
@@ -17730,7 +17900,7 @@ window.MQ_COURS['Tle D'] = Object.assign(window.MQ_COURS['Tle D'] || {}, {
   };
 
   window.addEventListener('popstate', function(){
-    if(!inSub) return;
+    if(!inSub || window.__mqPrinting) return;
     if(classeMode && !confirmed && !confirm('Quitter le mode classe ?')){
       try { history.pushState({mc:1}, ''); pushed = true; } catch(e){}
       return;
