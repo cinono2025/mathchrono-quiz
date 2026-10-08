@@ -5006,7 +5006,7 @@ function dialUSSD(code){
 }
 /* Réglages (à modifier ici) */
 window.MQ_CFG = {
-  REQUIRE_DEVICE: false,  // true = refuser les codes qui ne sont pas liés à un appareil (à activer quand l'outil de génération des codes ajoute le champ « d »)
+  REQUIRE_DEVICE: true,   // true = les codes non liés à un appareil sont refusés (ACTIVÉ). Mettre false pour accepter de nouveau les anciens codes.
   GATE_EVAL: true,        // true = l'évaluation formative d'une classe verrouillée est réservée aux payeurs
   MONTANT_ENS: 2000       // prix du code enseignant (toutes les classes)
 };
@@ -5033,7 +5033,7 @@ window.mqDeviceCheck = function(p){
   if(p && p.d){
     if(String(p.d).toUpperCase() !== me) return {ok:false, soft:true, wrongDevice:true, err:'Ce code est lié à un autre appareil : il ne fonctionne que sur le téléphone pour lequel il a été délivré. Pour en obtenir un pour cet appareil, envoie son identifiant : '+me};
   } else if(window.MQ_CFG.REQUIRE_DEVICE){
-    return {ok:false, err:'Ce code n\'est lié à aucun appareil. Demande un nouveau code en envoyant l\'identifiant de cet appareil : '+me};
+    return {ok:false, soft:true, unbound:true, err:'Ce code n\'est lié à aucun appareil : il n\'est plus accepté. Si tu as déjà payé, demande un nouveau code gratuit en envoyant l\'identifiant de cet appareil : '+me};
   }
   return null;
 };
@@ -11374,12 +11374,12 @@ function payerMoov(){
   function saveStore(a){ try{ localStorage.setItem(LSK,JSON.stringify(a)); }catch(e){} }
   function addToStore(code){ var a=loadStore(); if(a.indexOf(code)<0){ a.push(code); saveStore(a); } }
   function refresh(){
-    var codes=loadStore(); ACC={};
+    var codes=loadStore(); ACC={}; window.__mqDevE=false; window.__mqDevT=false;
     return Promise.all(codes.map(verify)).then(function(rs){
-      var keep=[]; rs.forEach(function(r,i){ if(r.ok){ var old=ACC[r.cls]; if(!old||old.exp<r.exp) ACC[r.cls]={exp:r.exp,name:r.name,code:r.code}; keep.push(codes[i]); } else if(r.soft){ keep.push(codes[i]); } });
+      var keep=[]; rs.forEach(function(r,i){ if(r.unbound||r.wrongDevice) window.__mqDevE=true; if(r.ok){ var old=ACC[r.cls]; if(!old||old.exp<r.exp) ACC[r.cls]={exp:r.exp,name:r.name,code:r.code}; keep.push(codes[i]); } else if(r.soft){ keep.push(codes[i]); } });
       if(keep.length!==codes.length) saveStore(keep);
       var st=null; try{ st=localStorage.getItem('mq_lic'); }catch(e){}
-      if(st&&window.__SOM&&window.__SOM.verify) return window.__SOM.verify(st).then(function(r){ teacherExp=(r&&r.ok)?r.exp:''; }); teacherExp='';
+      if(st&&window.__SOM&&window.__SOM.verify) return window.__SOM.verify(st).then(function(r){ teacherExp=(r&&r.ok)?r.exp:''; if(r&&(r.unbound||r.wrongDevice)) window.__mqDevT=true; }); teacherExp='';
     }).then(function(){ ready=true; });
   }
 
@@ -11447,6 +11447,7 @@ function payerMoov(){
       '<textarea id="mqCode" rows="3" placeholder="Colle ici le code reçu (il commence par MQ1.)" autocomplete="off" style="'+I+'font-family:monospace;font-size:12px;"></textarea>'+
       '<button onclick="mqActivate()" style="'+B+'background:var(--accent);color:#fff;">🔓 Activer mon code</button>'+
       '<div id="mqMsg" style="font-size:13px;color:var(--danger);margin-top:8px;min-height:18px;"></div>'+
+      ((window.__mqDevE||window.__mqDevT)?'<div style="margin-top:10px;padding:10px 12px;border:1px solid var(--danger);border-radius:var(--radius);background:var(--danger-bg);font-size:13px;line-height:1.5;"><b>Ton ancien code n\'est plus accepté.</b> Les codes sont désormais liés à un seul appareil. <b>Si tu as déjà payé, ne repaie pas</b> : écris ton nom à l\'étape 2 (le même que lors de ton paiement), puis demande ton nouveau code gratuit.'+(window.__mqDevE?'<a href="#" onclick="return mqWhatsappRenew(this,\'E\')" style="'+B+'background:#1a5c1f;color:#fff;">📲 Demander mon nouveau code (déjà payé)</a>':'')+(window.__mqDevT?'<a href="#" onclick="return mqWhatsappRenew(this,\'T\')" style="'+B+'background:#1a5c1f;color:#fff;">📲 Code enseignant : demander mon nouveau code</a>':'')+'<div style="font-size:12px;margin-top:8px;">Identifiant de cet appareil : <b style="font-family:monospace;">'+esc(dev)+'</b></div></div>':'')+
       (pending&&!cryptoOk?'<div style="font-size:12.5px;color:var(--danger);margin-top:6px;">Un code est enregistré sur cet appareil, mais ce navigateur ne peut pas le vérifier. Ouvre le site avec Chrome (lien https) : ton code est conservé.</div>':'')+
       '<div style="'+H+'">👩‍🏫 Tu es enseignant ?</div>'+
       '<p style="margin:4px 0;">Le <b>code enseignant</b> ('+ENS+' FCFA, valable 2 mois) débloque <b>toutes les classes</b> : quiz, résumés de cours, évaluations, mode classe, ainsi que les évaluations sommatives. Colle-le à l\'étape 3.</p>'+
@@ -11469,6 +11470,24 @@ function payerMoov(){
     el.href='https://wa.me/'+PAY.WHATSAPP+'?text='+encodeURIComponent(txt); el.target='_blank'; return true;
   };
 
+  /* ancien client : demande d'un nouveau code (déjà payé), avec l'identifiant de l'appareil */
+  function storedClasses(){
+    var out=[]; loadStore().forEach(function(c){ try{ var q=JSON.parse(atob(c.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))); if(q&&q.c&&out.indexOf(q.c)<0) out.push(q.c); }catch(e){} });
+    return out;
+  }
+  window.mqWhatsappRenew=function(el,kind){
+    var n=document.getElementById('mqNom').value.trim(), m=document.getElementById('mqMsg');
+    if(!n){ m.style.color='var(--danger)'; m.textContent='Écris ton nom à l\'étape 2 (le même que lors de ton paiement).'; return false; }
+    m.textContent='';
+    var id=window.mqDeviceId(), txt;
+    if(kind==='T'){
+      txt='Bonjour, j\'ai déjà payé mon code enseignant. Il n\'est plus accepté : merci de m\'envoyer un nouveau code lié à mon appareil.\nNom : '+n+'\nRéférence de la transaction : RENOUVELLEMENT\nIdentifiant de mon appareil : '+id+'\nMerci.';
+    } else {
+      var cl=storedClasses(); if(!cl.length) cl=[currentClass];
+      txt='Bonjour, j\'ai déjà payé mon accès. Mon ancien code n\'est plus accepté : merci de m\'envoyer un nouveau code lié à mon appareil.\nNom : '+n+'\nClasse : '+cl.join(' / ')+'\nRéférence de la transaction : RENOUVELLEMENT\nIdentifiant de mon appareil : '+id+'\nMerci.';
+    }
+    el.href='https://wa.me/'+PAY.WHATSAPP+'?text='+encodeURIComponent(txt); el.target='_blank'; return true;
+  };
   window.mqWhatsappEns=function(el){
     var n=document.getElementById('mqNom').value.trim(), r=document.getElementById('mqRef').value.trim(), m=document.getElementById('mqMsg'), ENS=window.MQ_CFG.MONTANT_ENS;
     if(!n){ m.style.color='var(--danger)'; m.textContent='Écris ton nom (étape 2).'; return false; }
