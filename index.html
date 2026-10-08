@@ -5008,7 +5008,9 @@ function dialUSSD(code){
 window.MQ_CFG = {
   REQUIRE_DEVICE: true,   // true = les codes non liés à un appareil sont refusés (ACTIVÉ). Mettre false pour accepter de nouveau les anciens codes.
   GATE_EVAL: true,        // true = l'évaluation formative d'une classe verrouillée est réservée aux payeurs
-  MONTANT_ENS: 2000       // prix du code enseignant (toutes les classes)
+  MONTANT_ENS: 2000,      // prix du code Parent / Enseignant (toute l'application + évaluations à imprimer)
+  EVAL_REQUIRES_TEACHER: true, // true = les évaluations à imprimer exigent le code Parent / Enseignant (un code élève de classe ne suffit plus)
+  EVAL_TRIAL: false       // false = rien d'imprimable sans code Parent / Enseignant ; true = un thème d'essai par classe reste libre
 };
 /* Identifiant d'appareil : un code peut être lié à cet identifiant (champ « d » du code signé) */
 function mqDeviceId(){
@@ -5208,7 +5210,7 @@ function renderThemeBar(){
       <button onclick="renderClassePage()" style="flex:1;padding:7px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--text-sec);font-family:inherit;font-size:12px;cursor:pointer;">🖥️ Mode Classe</button>
       <button onclick="renderCustomQPage()" style="flex:1;padding:7px;border-radius:8px;border:1px solid var(--border-strong);background:transparent;color:var(--text-sec);font-family:inherit;font-size:12px;cursor:pointer;">➕ Mes questions</button>
     </div>
-    <button onclick="renderEvalPage()" style="width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--accent);background:var(--accent-bg);color:var(--accent-text);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;">📝 Évaluation à imprimer (sujet + corrigé)</button>
+    <button onclick="renderEvalPage()" style="width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--accent);background:var(--accent-bg);color:var(--accent-text);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;">📝 Évaluation à imprimer (sujet + corrigé)${(window.mqEvLocked&&window.mqEvLocked())?' 🔒':''}</button>
   `;
 }
 function startTimer(from){
@@ -11250,11 +11252,9 @@ function payerMoov(){
     if(!unlocked()){
       var ent=EVX().state.ent||{};
       app.innerHTML='<div class="card" style="padding:1.1rem;">'+head+tiles+
-        '<div style="background:var(--surface2);border-radius:10px;padding:12px;margin-bottom:12px;"><div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;">\ud83d\udd12 Acc\u00e8s r\u00e9serv\u00e9 aux enseignants</div><div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;">Les sujets sommatifs et leurs corrig\u00e9s ne doivent pas \u00eatre accessibles aux \u00e9l\u00e8ves. Chaque enseignant re\u00e7oit un <b>code personnel</b>, valable 2 mois. Fais ta demande sur WhatsApp : tu recevras un code \u00e0 coller ci-dessous, ou un lien \u00e0 toucher.</div></div>'+
-        '<div class="theme-label">1. Demander le code</div>'+
-        '<input id="som-nom" class="theme-select" style="'+INP+'margin-bottom:6px;" placeholder="Ton nom et pr\u00e9nom" value="'+esc(ss.askNom||'')+'">'+
-        '<input id="som-etab" class="theme-select" style="'+INP+'margin-bottom:8px;" placeholder="Ton \u00e9tablissement" value="'+esc(ss.askEtab!=null?ss.askEtab:(ent.etab||''))+'">'+
-        '<button onclick="somAsk()" style="'+BTN+'background:var(--success);color:#fff;margin-bottom:14px;">\ud83d\udcf2 Demander le code sur WhatsApp</button>'+
+        '<div style="background:var(--surface2);border-radius:10px;padding:12px;margin-bottom:12px;"><div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;">\ud83d\udd12 Acc\u00e8s r\u00e9serv\u00e9 aux parents et enseignants</div><div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;">Les \u00e9valuations \u00e0 imprimer (formatives et sommatives, avec corrig\u00e9s) sont accessibles avec le <b>code Parent / Enseignant</b> : <b>2 000 F</b>, valable 2 mois. Il d\u00e9bloque aussi <b>toute l\u2019application</b> (toutes les classes).</div></div>'+
+        '<div class="theme-label">1. Obtenir le code</div>'+
+        '<button onclick="goParentOffer()" style="'+BTN+'background:var(--success);color:#fff;margin-bottom:14px;">\ud83d\udcb3 Obtenir mon code Parent / Enseignant (2 000 F)</button>'+
         '<div class="theme-label">2. Saisir le code re\u00e7u</div>'+
         '<textarea id="som-code" rows="3" placeholder="Colle ici le code (commence par MQ1.)" autocomplete="off" class="theme-select" style="'+INP+'margin-bottom:8px;font-family:monospace;font-size:12px;"></textarea>'+
         '<button onclick="somUnlock()" style="'+BTN+'background:var(--accent-text);color:#fff;">D\u00e9verrouiller</button>'+
@@ -11280,7 +11280,7 @@ function payerMoov(){
         '<button onclick="somCopy(this)" style="'+BTN+'background:transparent;border:1px solid var(--border-strong);color:var(--text-sec);font-weight:600;font-size:13px;">\ud83d\udccb Copier la r\u00e9f\u00e9rence</button>'+
         '<div style="font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5;">PDF : dans la fen\u00eatre d\u2019impression, choisis \u00ab Enregistrer au format PDF \u00bb. Word : le fichier se t\u00e9l\u00e9charge et reste modifiable.</div></div>'; }
     app.innerHTML='<div class="card" style="padding:1.1rem;">'+head+tiles+
-      '<div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--text-muted);margin-bottom:10px;"><span>\u2705 Acc\u00e8s enseignant : <b style="color:var(--text);">'+esc(ss.lic.name||'')+'</b> \u00b7 valable jusqu\u2019au '+frDate(ss.lic.exp)+'</span><a href="#" onclick="somLogout();return false;" style="color:var(--accent);">Quitter</a></div>'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--text-muted);margin-bottom:10px;"><span>\u2705 Acc\u00e8s Parent / Enseignant : <b style="color:var(--text);">'+esc(ss.lic.name||'')+'</b> \u00b7 valable jusqu\u2019au '+frDate(ss.lic.exp)+'</span><a href="#" onclick="somLogout();return false;" style="color:var(--accent);">Quitter</a></div>'+
       '<div class="theme-label">Classe</div><div style="display:flex;gap:6px;margin-bottom:4px;">'+cls+'</div><div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">Les autres classes seront ajout\u00e9es progressivement.</div>'+
       '<div class="theme-label" style="display:flex;justify-content:space-between;"><span>Th\u00e8mes de l\u2019\u00e9valuation</span><span style="color:var(--text-muted);">'+nm+' / '+SZ.cap+'</span></div>'+
       '<div style="border:1px solid var(--border);border-radius:10px;padding:0 10px;margin-bottom:8px;">'+th+'</div>'+
@@ -11400,7 +11400,7 @@ function payerMoov(){
   var BTN='width:100%;margin-bottom:8px;padding:9px;border-radius:8px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;';
   window.mqAccesBar=function(){
     var cls=currentClass;
-    if(isTeacher()) return '<div style="margin-bottom:8px;font-size:12px;color:var(--success);font-weight:700;">✅ Accès enseignant : toutes les classes</div>';
+    if(isTeacher()) return '<div style="margin-bottom:8px;font-size:12px;color:var(--success);font-weight:700;">✅ Accès Parent / Enseignant : toute l\'application</div>';
     var a=ACC[cls];
     if(a&&a.exp>=today()){ var d=daysLeft(a.exp); return '<div style="margin-bottom:8px;font-size:12px;color:var(--success);font-weight:700;">✅ Classe de '+esc(cls)+' débloquée jusqu\'au '+frDate(a.exp)+' ('+d+' jour'+(d>1?'s':'')+' restant'+(d>1?'s':'')+')</div>'; }
     return '<div style="margin-bottom:8px;font-size:12px;color:var(--text-sec);">Thème d\'essai gratuit : <b>'+esc(label(trial(cls)))+'</b></div>'+
@@ -11447,13 +11447,13 @@ function payerMoov(){
       '<textarea id="mqCode" rows="3" placeholder="Colle ici le code reçu (il commence par MQ1.)" autocomplete="off" style="'+I+'font-family:monospace;font-size:12px;"></textarea>'+
       '<button onclick="mqActivate()" style="'+B+'background:var(--accent);color:#fff;">🔓 Activer mon code</button>'+
       '<div id="mqMsg" style="font-size:13px;color:var(--danger);margin-top:8px;min-height:18px;"></div>'+
-      ((window.__mqDevE||window.__mqDevT)?'<div style="margin-top:10px;padding:10px 12px;border:1px solid var(--danger);border-radius:var(--radius);background:var(--danger-bg);font-size:13px;line-height:1.5;"><b>Ton ancien code n\'est plus accepté.</b> Les codes sont désormais liés à un seul appareil. <b>Si tu as déjà payé, ne repaie pas</b> : écris ton nom à l\'étape 2 (le même que lors de ton paiement), puis demande ton nouveau code gratuit.'+(window.__mqDevE?'<a href="#" onclick="return mqWhatsappRenew(this,\'E\')" style="'+B+'background:#1a5c1f;color:#fff;">📲 Demander mon nouveau code (déjà payé)</a>':'')+(window.__mqDevT?'<a href="#" onclick="return mqWhatsappRenew(this,\'T\')" style="'+B+'background:#1a5c1f;color:#fff;">📲 Code enseignant : demander mon nouveau code</a>':'')+'<div style="font-size:12px;margin-top:8px;">Identifiant de cet appareil : <b style="font-family:monospace;">'+esc(dev)+'</b></div></div>':'')+
+      ((window.__mqDevE||window.__mqDevT)?'<div style="margin-top:10px;padding:10px 12px;border:1px solid var(--danger);border-radius:var(--radius);background:var(--danger-bg);font-size:13px;line-height:1.5;"><b>Ton ancien code n\'est plus accepté.</b> Les codes sont désormais liés à un seul appareil. <b>Si tu as déjà payé, ne repaie pas</b> : écris ton nom à l\'étape 2 (le même que lors de ton paiement), puis demande ton nouveau code gratuit.'+(window.__mqDevE?'<a href="#" onclick="return mqWhatsappRenew(this,\'E\')" style="'+B+'background:#1a5c1f;color:#fff;">📲 Demander mon nouveau code (déjà payé)</a>':'')+(window.__mqDevT?'<a href="#" onclick="return mqWhatsappRenew(this,\'T\')" style="'+B+'background:#1a5c1f;color:#fff;">📲 Code Parent / Enseignant : demander mon nouveau code</a>':'')+'<div style="font-size:12px;margin-top:8px;">Identifiant de cet appareil : <b style="font-family:monospace;">'+esc(dev)+'</b></div></div>':'')+
       (pending&&!cryptoOk?'<div style="font-size:12.5px;color:var(--danger);margin-top:6px;">Un code est enregistré sur cet appareil, mais ce navigateur ne peut pas le vérifier. Ouvre le site avec Chrome (lien https) : ton code est conservé.</div>':'')+
-      '<div style="'+H+'">👩‍🏫 Tu es enseignant ?</div>'+
-      '<p style="margin:4px 0;">Le <b>code enseignant</b> ('+ENS+' FCFA, valable 2 mois) débloque <b>toutes les classes</b> : quiz, résumés de cours, évaluations, mode classe, ainsi que les évaluations sommatives. Colle-le à l\'étape 3.</p>'+
+      '<div id="mqParent" style="'+H+'">👨‍👩‍👧 Parent ou enseignant ?</div>'+
+      '<p style="margin:4px 0;">Le <b>code Parent / Enseignant</b> ('+ENS+' FCFA, valable 2 mois) débloque <b>toute l\'application</b> : toutes les classes (quiz, résumés de cours, mode classe) et les <b>évaluations à imprimer</b> (formatives et sommatives, avec corrigés). Colle-le à l\'étape 3.</p>'+
       '<a data-ussd="'+esc(moovE)+'" href="'+lienTel(moovE)+'" style="'+B+'background:#6a2c91;color:#fff;">🟣 Payer '+ENS+' F avec Moov Money</a>'+
       '<a data-ussd="'+esc(mtnE)+'" href="'+lienTel(mtnE)+'" style="'+B+'background:#d89a00;color:#222;">🟡 Payer '+ENS+' F avec MTN MoMo</a>'+
-      '<a id="mqWaEns" href="#" onclick="return mqWhatsappEns(this)" style="'+B+'background:#1a5c1f;color:#fff;">📲 J\'ai payé '+ENS+' F : demander mon code enseignant</a>'+
+      '<a id="mqWaEns" href="#" onclick="return mqWhatsappEns(this)" style="'+B+'background:#1a5c1f;color:#fff;">📲 J\'ai payé '+ENS+' F : demander mon code Parent / Enseignant</a>'+
       '<div style="font-size:12px;color:var(--text-muted);margin-top:12px;">Identifiant de cet appareil (joint automatiquement à ta demande) : <b style="font-family:monospace;color:var(--text);">'+esc(dev)+'</b></div>'+
       '</div>';
     try{ renderThemeBar(); }catch(e){} try{ window.scrollTo(0,0); }catch(e){}
@@ -11481,7 +11481,7 @@ function payerMoov(){
     m.textContent='';
     var id=window.mqDeviceId(), txt;
     if(kind==='T'){
-      txt='Bonjour, j\'ai déjà payé mon code enseignant. Il n\'est plus accepté : merci de m\'envoyer un nouveau code lié à mon appareil.\nNom : '+n+'\nRéférence de la transaction : RENOUVELLEMENT\nIdentifiant de mon appareil : '+id+'\nMerci.';
+      txt='Bonjour, j\'ai déjà payé mon code Parent / Enseignant. Il n\'est plus accepté : merci de m\'envoyer un nouveau code lié à mon appareil.\nNom : '+n+'\nRéférence de la transaction : RENOUVELLEMENT\nIdentifiant de mon appareil : '+id+'\nMerci.';
     } else {
       var cl=storedClasses(); if(!cl.length) cl=[currentClass];
       txt='Bonjour, j\'ai déjà payé mon accès. Mon ancien code n\'est plus accepté : merci de m\'envoyer un nouveau code lié à mon appareil.\nNom : '+n+'\nClasse : '+cl.join(' / ')+'\nRéférence de la transaction : RENOUVELLEMENT\nIdentifiant de mon appareil : '+id+'\nMerci.';
@@ -11493,7 +11493,7 @@ function payerMoov(){
     if(!n){ m.style.color='var(--danger)'; m.textContent='Écris ton nom (étape 2).'; return false; }
     if(!r){ m.style.color='var(--danger)'; m.textContent='Écris la référence de la transaction (étape 2).'; return false; }
     m.textContent='';
-    var txt='Bonjour, j\'ai payé '+ENS+' FCFA pour un code enseignant (accès à toutes les classes).\nNom : '+n+'\nRéférence de la transaction : '+r+'\nIdentifiant de mon appareil : '+window.mqDeviceId()+'\nMerci de m\'envoyer mon code enseignant.';
+    var txt='Bonjour, j\'ai payé '+ENS+' FCFA pour un code Parent / Enseignant (toute l\'application et les évaluations à imprimer).\nNom : '+n+'\nRéférence de la transaction : '+r+'\nIdentifiant de mon appareil : '+window.mqDeviceId()+'\nMerci de m\'envoyer mon code Parent / Enseignant.';
     el.href='https://wa.me/'+PAY.WHATSAPP+'?text='+encodeURIComponent(txt); el.target='_blank'; return true;
   };
   document.addEventListener('click',function(e){
@@ -11542,17 +11542,71 @@ function payerMoov(){
     if(window.MQ_CFG&&window.MQ_CFG.GATE_EVAL===false) return true;
     var E=window.__EV&&window.__EV.state; if(!E||!E.cls) return true;
     if(E.kind==='S') return true;
-    if(canClass(E.cls)) return true;
+    var C=window.MQ_CFG||{};
+    if(isTeacher()) return true;                                  /* code Parent / Enseignant : tout est ouvert */
+    if(C.EVAL_REQUIRES_TEACHER===false&&canClass(E.cls)) return true;
+    if(C.EVAL_TRIAL===false) return false;
     var tr=trial(E.cls);
-    return E.th.length>0&&E.th.every(function(x){ return x===tr; });
+    return E.th.length>0&&E.th.every(function(x){ return x===tr; });   /* essai gratuit : thème d'essai de la classe */
   }
+  /* ===== « Évaluation à imprimer » (page d'accueil) : débloquée par le code Parent / Enseignant ===== */
+  function somLicOK(){ try{ return !!(window.__SOM&&window.__SOM.state&&window.__SOM.state.lic); }catch(e){ return false; } }
+  window.mqEvLocked=function(){
+    var C=window.MQ_CFG||{};
+    if(C.GATE_EVAL===false||C.EVAL_TRIAL!==false) return false;
+    if(isTeacher()||somLicOK()) return false;
+    if(C.EVAL_REQUIRES_TEACHER===false&&canClass(currentClass)) return false;
+    return true;
+  };
+  function renderEvalLock(){
+    var app=document.getElementById('app'); if(!app) return;
+    var ENS=(window.MQ_CFG||{}).MONTANT_ENS, B='width:100%;padding:11px;border-radius:10px;border:none;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;';
+    app.innerHTML='<div class="card" style="padding:1.1rem;">'+
+      '<div style="font-size:17px;font-weight:800;color:var(--text);margin-bottom:2px;">📝 Évaluations à imprimer</div>'+
+      '<div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">Sujets et corrigés prêts à imprimer ou à télécharger (PDF et Word), formatifs et sommatifs.</div>'+
+      '<div style="background:var(--surface2);border-radius:10px;padding:12px;margin-bottom:12px;"><div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;">🔒 Accès réservé aux parents et enseignants</div><div style="font-size:12.5px;color:var(--text-sec);line-height:1.55;">Les évaluations se débloquent avec le <b>code Parent / Enseignant</b> : <b>'+ENS+' F</b>, valable 2 mois. Ce code débloque aussi <b>toute l\'application</b> (toutes les classes).</div></div>'+
+      '<div class="theme-label">1. Obtenir le code</div>'+
+      '<button onclick="goParentOffer()" style="'+B+'background:var(--success);color:#fff;margin-bottom:14px;">💳 Obtenir mon code Parent / Enseignant ('+ENS+' F)</button>'+
+      '<div class="theme-label">2. Saisir le code reçu</div>'+
+      '<textarea id="mqEvCode" rows="3" placeholder="Colle ici le code (commence par MQ1.)" autocomplete="off" class="theme-select" style="width:100%;margin-bottom:8px;font-family:monospace;font-size:12px;"></textarea>'+
+      '<button onclick="mqEvUnlock()" style="'+B+'background:var(--accent-text);color:#fff;">Déverrouiller</button>'+
+      '<div id="mqEvMsg" style="font-size:12.5px;color:var(--danger);min-height:18px;margin-top:8px;line-height:1.4;"></div></div>';
+  }
+  window.mqEvUnlock=function(){
+    var v=(document.getElementById('mqEvCode')||{}).value||'', m=document.getElementById('mqEvMsg');
+    if(!m) return;
+    if(!v.trim()){ m.style.color='var(--danger)'; m.textContent='Colle le code reçu sur WhatsApp.'; return; }
+    if(peekType(v)==='E'){ m.style.color='var(--danger)'; m.textContent='Ceci est un code élève de classe : il ne débloque pas les évaluations à imprimer. Il faut le code Parent / Enseignant.'; return; }
+    m.style.color='var(--text-muted)'; m.textContent='Vérification…';
+    activateTeacher(v).then(function(r){
+      if(!r.ok){ m.style.color='var(--danger)'; m.textContent=r.err; return; }
+      window.renderEvalPage();
+    });
+  };
+  (function(){ var f=window.renderEvalPage; if(typeof f!=='function') return;
+    window.renderEvalPage=function(){ if(window.mqEvLocked()){ renderEvalLock(); return; } return f.apply(this,arguments); }; })();
+  /* bandeau « évaluations à imprimer » sur la page formative */
+  function evBanner(){
+    var C=window.MQ_CFG||{}, E=window.__EV&&window.__EV.state, app=document.getElementById('app');
+    var old=document.getElementById('mqEvBanner');
+    var show=!!(app&&E&&E.kind!=='S'&&document.getElementById('ev-ref')&&C.GATE_EVAL!==false&&!isTeacher()&&!(C.EVAL_REQUIRES_TEACHER===false&&E.cls&&canClass(E.cls)));
+    if(!show){ if(old&&old.parentNode) old.parentNode.removeChild(old); return; }
+    if(old) return;
+    app.insertAdjacentHTML('afterbegin','<div id="mqEvBanner" style="margin-bottom:10px;padding:10px 12px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--accent-bg);color:var(--accent-text);font-size:12.5px;line-height:1.5;">🔒 <b>Évaluations à imprimer</b> : réservées au <b>code Parent / Enseignant</b> ('+C.MONTANT_ENS+' F, 2 mois), qui débloque aussi toute l\'application.'+(C.EVAL_TRIAL===false?'':' Un thème d\'essai par classe est gratuit.')+' <a href="#" onclick="goParentOffer();return false;" style="font-weight:700;color:var(--accent-text);text-decoration:underline;">Obtenir mon code</a></div>');
+  }
+  /* l'évaluation se redessine à chaque clic : on surveille #app pour garder le bandeau affiché */
+  (function(){ var app=document.getElementById('app'); if(!app||!window.MutationObserver) return;
+    new MutationObserver(function(){ try{ evBanner(); }catch(e){} }).observe(app,{childList:true}); })();
+  window.goParentOffer=function(){
+    try{ startQuiz(); clearInterval(timer); }catch(e){}
+    currentTheme='Tous'; mqPayPage('Tous');
+    setTimeout(function(){ var el=document.getElementById('mqParent'); if(el&&el.scrollIntoView) el.scrollIntoView({behavior:'smooth',block:'start'}); },80);
+  };
   function evDeny(){
-    var E=window.__EV.state;
-    if(confirm('La classe de '+E.cls+' est verrouillée : seul son thème d\'essai peut être imprimé. Voir comment la débloquer (200 F, ou code enseignant) ?')){
-      try{ goClass(E.cls); currentTheme='Tous'; mqPayPage('Tous'); }catch(e){}
-    }
+    var C=window.MQ_CFG||{};
+    if(confirm('Les évaluations à imprimer sont réservées au code Parent / Enseignant ('+C.MONTANT_ENS+' F, valable 2 mois), qui débloque aussi toute l\'application.'+(C.EVAL_TRIAL===false?'':' Seul le thème d\'essai de la classe est libre.')+' Voir comment l\'obtenir ?')){ window.goParentOffer(); }
   }
-  ['evGen','evPrint'].forEach(function(n){
+  ['evGen','evPrint','evWord'].forEach(function(n){
     var f=window[n]; if(typeof f!=='function') return;
     window[n]=function(){ if(!evAllowed()){ evDeny(); return; } return f.apply(this,arguments); };
   });
