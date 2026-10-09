@@ -1,0 +1,12 @@
+{
+  "name": "MathChrono-Quiz",
+  "short_name": "MathChrono",
+  "description": "Quiz chronométrés de mathématiques de la 6e à la Terminale (Bénin).",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#185fa5",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
