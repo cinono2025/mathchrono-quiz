@@ -1,0 +1,6 @@
+node_modules/
+dist-mono/
+# dist/ est reconstruit par Cloudflare Pages (commande : node build.mjs). Retirer cette ligne pour versionner aussi dist/.
+dist/
+*.pem
+Outil_Generateur_Codes*

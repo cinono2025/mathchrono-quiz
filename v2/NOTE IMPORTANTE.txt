@@ -1,0 +1,50 @@
+﻿=====================================================
+  NOTE IMPORTANTE — MathChrono-Quiz
+  Dernière mise à jour : 09/10/2026
+=====================================================
+
+1) NE JAMAIS OUVRIR L'APPLICATION AVEC UN VIEUX NAVIGATEUR
+
+   L'ancien Google Chrome 16 (installé sur cet ordinateur) ne
+   fonctionne PAS avec MathChrono-Quiz. Il date de 2011 et ne
+   comprend pas le JavaScript moderne utilisé par l'application.
+
+   Symptômes si on l'utilise :
+   - La page reste blanche au milieu
+   - La console affiche : Uncaught SyntaxError: Unexpected identifier
+   - Les boutons ne réagissent pas
+
+   NAVIGATEURS À UTILISER :
+   - Firefox (à jour)     ✅
+   - Google Chrome récent ✅
+   - Microsoft Edge       ✅
+
+   Si un doute : dans le navigateur, menu → À propos → vérifier que
+   la version est supérieure à 120. Si elle est inférieure, mettre à jour.
+
+2) NE JAMAIS PUBLIER LA CLÉ PRIVÉE DE GÉNÉRATION DE CODES
+
+   La clé privée qui sert à signer les codes Parent/Enseignant et
+   les codes élèves ne doit JAMAIS apparaître sur GitHub, ni dans un
+   fichier du projet, ni dans un message public.
+
+   Elle reste sur un support hors ligne (clé USB, disque externe).
+
+   Si elle est perdue : tous les codes déjà émis deviennent invalides,
+   il faut regénérer une nouvelle paire de clés et réémettre les codes.
+
+3) AVANT DE MODIFIER DU CONTENU
+
+   - Les questions sont dans : src/content/questions/
+   - Les cours sont dans    : src/content/cours/
+   - Les sommatives sont    : src/content/sommatif/
+
+   Après toute modification, lancer :  node build.mjs
+   Puis tester avec : npx serve dist  → http://localhost:3000
+
+4) EN CAS DE DOUTE
+
+   Garder une copie de secours du dossier complet (clé USB, Google Drive).
+   Le fichier mathchrono-quiz-v38.zip est la version stable de référence.
+
+=====================================================
