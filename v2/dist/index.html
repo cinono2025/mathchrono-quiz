@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathChrono-Quiz — 6e à Terminale</title>
+<meta name="application-name" content="MathChrono-Quiz">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="MathChrono">
+<meta name="theme-color" content="#185fa5">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23185fa5'/%3E%3Ccircle cx='50' cy='46' r='24' fill='none' stroke='white' stroke-width='6'/%3E%3Cline x1='50' y1='22' x2='50' y2='18' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='50' y1='46' x2='50' y2='30' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='50' y1='46' x2='63' y2='54' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='46' r='3' fill='white'/%3E%3Cline x1='38' y1='16' x2='62' y2='16' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='50' y='88' font-family='Arial' font-size='13' font-weight='bold' fill='white' text-anchor='middle'%3E3%C3%A8me%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23185fa5'/%3E%3Ccircle cx='50' cy='46' r='24' fill='none' stroke='white' stroke-width='6'/%3E%3Cline x1='50' y1='22' x2='50' y2='18' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3Cline x1='50' y1='46' x2='50' y2='30' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='50' y1='46' x2='63' y2='54' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='46' r='3' fill='white'/%3E%3Cline x1='38' y1='16' x2='62' y2='16' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='50' y='88' font-family='Arial' font-size='13' font-weight='bold' fill='white' text-anchor='middle'%3E3%C3%A8me%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="css/app.css?v=3afe1022cb">
+</head>
+<body>
+<div class="container">
+
+  <div class="app-header">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div class="app-title">⏱ MathChrono-Quiz</div>
+      <button id="snd-btn" onclick="toggleSound()" title="Son on/off" style="background:transparent;border:1px solid var(--border-strong);border-radius:20px;padding:4px 10px;font-size:14px;cursor:pointer;color:var(--text-sec);">🔔</button>
+    </div>
+    <div class="app-sub">1<sup>er</sup> &amp; 2<sup>nd</sup> Cycle — 6<sup>e</sup> à Terminale</div>
+  </div>
+
+  <div id="app"></div>
+
+  <div class="app-footer">
+    Conçu par <strong>Francis EGOUNLETI</strong><br>
+    Enseignant de mathématiques<br>
+    <a href="https://tiktok.com/@mathsclubb" style="color:var(--accent-text);text-decoration:none;" target="_blank">🎵 tiktok.com/@mathsclubb</a><br><br>
+    💛 Soutenez-nous via MoMo Pay :<br>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:6px;">
+      <button onclick="payerMomo()" style="padding:7px 14px;background:#fff3e0;color:#e65100;border-radius:20px;font-weight:600;font-size:13px;border:1px solid #e65100;cursor:pointer;font-family:inherit;">📲 MTN MoMo</button>
+      <button onclick="payerMoov()" style="padding:7px 14px;background:#e3f2fd;color:#0d47a1;border-radius:20px;font-weight:600;font-size:13px;border:1px solid #0d47a1;cursor:pointer;font-family:inherit;">📲 Moov Money</button>
+    </div>
+    <span style="font-size:11px;color:var(--text-muted);margin-top:6px;display:inline-block;">MTN : *880*41*171251*montant# &nbsp;|&nbsp; Moov : *855*41*258051*montant*1#</span>
+  </div>
+</div>
+
+<script>window.MQ_INDEX={"v":"3afe1022cb","cls":{"6e":"data/c-6e.js","5e":"data/c-5e.js","4e":"data/c-4e.js","3e":"data/c-3e.js","2nde A":"data/c-2nde-a.js","1ère A":"data/c-1ere-a.js","Tle A":"data/c-tle-a.js","2nde D":"data/c-2nde-d.js","1ère D":"data/c-1ere-d.js","Tle D":"data/c-tle-d.js","2nde C":"data/c-2nde-c.js","1ère C":"data/c-1ere-c.js","Tle C":"data/c-tle-c.js"},"som":{"2nde D":["data/s-01.js","data/s-03.js","data/s-08.js"],"5e":["data/s-02.js","data/s-09.js","data/s-14.js"],"1ère D":["data/s-03.js","data/s-04.js","data/s-09.js","data/s-13.js"],"1ère C":["data/s-03.js","data/s-04.js","data/s-09.js","data/s-13.js"],"Tle D":["data/s-03.js","data/s-04.js","data/s-05.js","data/s-06.js","data/s-07.js"],"Tle C":["data/s-03.js","data/s-04.js","data/s-05.js","data/s-06.js","data/s-07.js"],"2nde A":["data/s-09.js"],"1ère A":["data/s-09.js","data/s-10.js"],"Tle A":["data/s-09.js","data/s-10.js","data/s-11.js"],"6e":["data/s-09.js","data/s-12.js"],"4e":["data/s-09.js","data/s-15.js"],"3e":["data/s-09.js","data/s-16.js"]}};</script>
+<script src="js/core.js?v=3afe1022cb"></script>
+<script>
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+  var hadSW = !!navigator.serviceWorker.controller;
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').then(function(){ return navigator.serviceWorker.ready; }).then(function(reg){
+      // les fichiers déjà chargés avant que le service worker prenne la main sont ajoutés au cache (disponibles hors ligne)
+      var urls = performance.getEntriesByType('resource').map(function(e){ return e.name; }).filter(function(u){ return /\/(data|js|css)\//.test(u); });
+      if(reg.active) reg.active.postMessage({ type: 'cache', urls: urls });
+    }).catch(function(){});
+  });
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if(!hadSW){ hadSW = true; return; }          // première installation : rien à signaler
+    var d = document.createElement('div');
+    d.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;background:#185fa5;color:#fff;padding:12px 14px;border-radius:12px;font:600 14px system-ui,sans-serif;display:flex;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 4px 18px rgba(0,0,0,.25)';
+    d.innerHTML = '<span>Nouvelle version disponible.</span><button style="background:#fff;color:#185fa5;border:none;border-radius:8px;padding:8px 12px;font:700 13px system-ui,sans-serif;cursor:pointer">Mettre à jour</button>';
+    d.querySelector('button').onclick = function(){ location.reload(); };
+    document.body.appendChild(d);
+  });
+}
+</script>
+</body>
+</html>
